@@ -1,325 +1,332 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enfightenment — Fighting Wisdom, one card at a time</title>
-<meta name="description" content="Fifty-two teachings of fighting wisdom. A teaching you read is borrowed — a teaching you fight for is yours. Flip a card, read the fight, make it yours. The deck and apparel are coming.">
-<meta property="og:title" content="Enfightenment — Fighting Wisdom, one card at a time">
-<meta property="og:description" content="A teaching you read is borrowed. A teaching you fight for is yours. Fifty-two cards.">
-<meta property="og:image" content="https://enfightenment.com/og.png">
-<meta property="og:url" content="https://enfightenment.com">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ENFIGHTEN — 52 cards of fighting wisdom</title>
+<meta name="description" content="A deck of 52 fighting-wisdom cards drawn from four decades on the mat. Pull one. Live it for a week.">
+
+<meta property="og:title" content="ENFIGHTEN">
+<meta property="og:description" content="You don't read wisdom. You fight for it. 52 cards, one a week.">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=DejaVu+Serif&display=swap" rel="stylesheet">
+<meta property="og:url" content="https://enfighten.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+
+<script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+
 <style>
-  :root{--ink:#0A0A0A;--ink2:#0F0F0F;--card:#0D0D0D;--line:#1e1e1e;--gold:#C8A24B;--gold2:#D9B667;--cream:#F0EDE6;--muted:#8a847c;--display:'EB Garamond',Georgia,serif;--body:'Inter',system-ui,sans-serif;--bebas:'Bebas Neue',Impact,sans-serif;--serif:'DejaVu Serif',Georgia,serif;}
-  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-  body{background:var(--ink);color:var(--cream);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}a{color:inherit;text-decoration:none}
-  .mark-bg{position:absolute;top:-40px;right:-60px;width:clamp(300px,46vw,600px);opacity:.05;pointer-events:none;user-select:none;filter:saturate(.7)}
-  .glow{position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:900px;height:900px;max-width:130vw;background:radial-gradient(circle,rgba(200,162,75,.14) 0%,rgba(200,162,75,0) 62%);pointer-events:none;z-index:0}
+:root{
+  --red:#C0392B;
+  --gold:#F0C158;
+  --ink:#0D0D0D;
+  --cream:#F0EDE6;
+  --red-deep:#A32E22;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
+body{
+  margin:0;
+  background:var(--red);
+  color:var(--ink);
+  font-family:'Newsreader',Georgia,serif;
+  font-size:18px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-  header.nav{position:sticky;top:0;z-index:60;background:rgba(10,10,10,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;height:96px}
-  .nav-logo{flex:0 1 auto;min-width:0}.nav-logo img{height:50px;display:block;max-width:100%;object-fit:contain}
-  .nav-right{display:flex;align-items:center;gap:28px}
-  .nav-links{display:flex;gap:26px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-  .nav-links a{transition:color .2s}.nav-links a:hover{color:var(--cream)}
-  .nav-cta{border:1px solid var(--gold);color:var(--gold);padding:11px 22px;border-radius:999px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:.2s;white-space:nowrap}
-  .nav-cta:hover{background:var(--gold);color:#0A0A0A}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 
-  /* ---------- CARD COMPONENT (shared) ---------- */
-  .ecard{position:relative;width:300px;aspect-ratio:5/7;perspective:1600px;cursor:pointer;flex:none}
-  .ecard .inner{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.4,.15,.2,1);transform-style:preserve-3d}
-  .ecard.flipped .inner{transform:rotateY(180deg)}
-  .ecard .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;border:1px solid var(--gold);background:var(--card);box-shadow:0 30px 60px rgba(0,0,0,.55);overflow:hidden}
-  .ecard .front{display:flex;flex-direction:column;padding:22px;height:100%}
-  .ecard .front .top{display:flex;justify-content:center;align-items:center;padding-top:2px}
-  .ecard .front .num{font-family:var(--serif);font-weight:700;font-size:1rem;color:#6c665f;letter-spacing:.08em;text-align:center;margin-top:auto;margin-bottom:9px}
-  .ecard .rule{border-top:1px solid var(--gold);opacity:.85;margin-bottom:11px}
-  .ecard .fwm{font-family:var(--bebas);font-size:1.25rem;letter-spacing:.045em;text-align:center;line-height:1}
-  .ecard .fwm .c,.ecard .back .wm .c{color:var(--cream)}
-  .ecard .fwm .g,.ecard .back .wm .g{color:var(--gold)}
-  .ecard .back .num{font-family:var(--serif);font-weight:700;font-size:1rem;color:#6c665f;letter-spacing:.08em;text-align:center;margin-top:auto;margin-bottom:9px}
-  .ecard .front .lock{width:44%;height:auto;object-fit:contain;display:block;opacity:1;margin:0 auto}
-  .ecard .front .teach{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;font-family:var(--serif);font-weight:700;font-size:1.7rem;line-height:1.22;letter-spacing:.01em}
-  .ecard .front .teach .k{color:var(--gold)}
-  .ecard .front .teach{padding:0 6px}
-  
-  .ecard .back{transform:rotateY(180deg);display:flex;flex-direction:column;padding:24px 22px;text-align:left}
-  .ecard .back .wm{font-family:var(--bebas);font-size:1.3rem;letter-spacing:.045em;text-align:center;margin-bottom:14px;line-height:1}
-  
-  .ecard .back .q{font-family:var(--serif);font-weight:700;font-size:1.1rem;line-height:1.28;color:#fff;margin-bottom:14px;text-align:center}
-  .ecard .back .beats{list-style:none;display:flex;flex-direction:column;gap:9px;flex:1;overflow-y:auto;min-height:0;padding-right:5px}
-  .ecard .back .beats::-webkit-scrollbar{width:3px}
-  .ecard .back .beats::-webkit-scrollbar-thumb{background:rgba(200,162,75,.4);border-radius:2px}
-  .ecard .back .beats li{font-family:var(--serif);font-size:.82rem;line-height:1.42;color:#cfcac2}
-  .ecard .back .close{font-family:var(--serif);font-style:italic;font-weight:700;font-size:1.12rem;letter-spacing:.01em;color:var(--gold);text-align:center}
-  .ecard .hint{position:absolute;bottom:-26px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:.8}
+.bar{
+  background:var(--ink);color:var(--gold);
+  font-family:'Bebas Neue',Impact,sans-serif;
+  letter-spacing:.18em;font-size:.82rem;
+  text-align:center;padding:11px 16px;
+}
 
-  /* ---------- HERO / featured (one at a time + prev/next) ---------- */
-  .hero{position:relative;padding:70px 0 60px;overflow:hidden}
-  .hero .in{position:relative;z-index:2;text-align:center}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;opacity:0;animation:fade 1s .15s ease forwards}
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2.4s infinite}
-  .hero h1{font-family:var(--display);font-weight:500;font-size:clamp(2.4rem,5.6vw,4rem);line-height:1.07;max-width:780px;margin:0 auto 16px;opacity:0;transform:translateY(12px);animation:rise .9s .3s ease forwards}
-  .hero h1 em{font-style:italic;color:var(--gold)}
-  .hero .thesis{max-width:560px;margin:0 auto;font-family:var(--display);font-style:italic;font-size:1.2rem;line-height:1.5;color:#e6e1d8;opacity:0;animation:fade 1s .55s ease forwards}
-  .featured{margin:48px auto 0;display:flex;flex-direction:column;align-items:center;gap:26px;opacity:0;transform:translateY(18px);animation:rise 1s .5s ease forwards}
-  .featured .ecard{width:340px}
-  .fctrl{display:flex;align-items:center;gap:22px}
-  .fctrl button{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--ink2);color:var(--cream);font-size:1.1rem;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center}
-  .fctrl button:hover{border-color:var(--gold);color:var(--gold)}
-  .fctrl .count{font-family:var(--serif);font-size:.95rem;color:var(--muted);letter-spacing:.1em;min-width:74px;text-align:center}
-  .flip-note{font-size:15px;letter-spacing:.02em;color:#ded9d0;font-style:italic;font-family:var(--display)}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;padding:22px 0;
+}
+.nav-mark{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-mark img{width:52px;height:auto}
+.nav-mark span{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:1.65rem;letter-spacing:.06em;color:var(--gold);
+  -webkit-text-stroke:1.5px var(--ink);
+}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:1.02rem;letter-spacing:.1em;
+  color:var(--ink);text-decoration:none;
+  border-bottom:2px solid transparent;padding-bottom:2px;
+  transition:border-color .18s;
+}
+.nav-links a:hover{border-color:var(--gold)}
+.nav-buy{
+  background:var(--gold);color:var(--ink)!important;
+  padding:9px 18px;border:2px solid var(--ink);
+  border-radius:5px;border-bottom-width:2px!important;
+}
+.nav-buy:hover{background:#f6cf78}
 
-  /* ---------- SECTION SCAFFOLD ---------- */
-  .section{padding:92px 0;border-top:1px solid var(--line)}
-  .section .head{text-align:center;margin-bottom:20px}
-  .kicker{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-  .section h2{font-family:var(--display);font-weight:500;font-size:clamp(1.9rem,4.2vw,2.8rem);line-height:1.14}
-  .section .lead{color:#d4cfc6;max-width:560px;margin:14px auto 0;font-size:1.06rem;text-align:center}
+.hero{padding:76px 0 96px}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:56px;align-items:center;
+}
+.hero h1{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:clamp(3rem,7.6vw,6rem);
+  line-height:.92;letter-spacing:.01em;
+  color:var(--gold);margin:0 0 26px;
+  -webkit-text-stroke:2px var(--ink);
+}
+.rule{height:3px;background:var(--ink);width:220px;margin:0 0 26px}
+.hero p{font-size:1.22rem;max-width:26em;margin:0 0 34px}
+.cta{
+  display:inline-block;
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:1.22rem;letter-spacing:.1em;
+  background:var(--gold);color:var(--ink);
+  text-decoration:none;padding:15px 38px;
+  border:3px solid var(--ink);border-radius:6px;
+  box-shadow:5px 5px 0 var(--ink);
+  transition:transform .12s,box-shadow .12s;
+}
+.cta:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+.cta:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink)}
+.hero-card img{
+  width:100%;border:3px solid var(--ink);border-radius:8px;
+  box-shadow:12px 12px 0 rgba(13,13,13,.32);
+}
 
-  /* ---------- THE SPREAD (row of flippable cards) ---------- */
-  .spread{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:56px}.spread-note{text-align:center;margin-top:34px;font-size:1.02rem;color:#e0dbd2}.spread{margin-top:26px}
-  .spread .ecard{width:240px}
-  .spread .ecard .front .teach{font-size:1.5rem}
-  .spread .ecard .back{padding:18px 16px}
-  .spread .ecard .back .wm{margin-bottom:10px;font-size:1.05rem}
-  .spread .ecard .fwm{font-size:1rem}
-  .spread .ecard .front .num,.spread .ecard .back .num{font-size:.85rem;margin-bottom:7px}
-  .spread .ecard .back .q{font-size:.9rem;line-height:1.25;margin-bottom:10px}
-  .spread .ecard .back .beats{gap:6px}
-  .spread .ecard .back .beats li{font-size:.66rem;line-height:1.35}
-  .spread .ecard .back .close{font-size:.9rem}
+.thesis{
+  background:var(--ink);color:var(--cream);
+  padding:88px 0;text-align:center;
+}
+.thesis p{
+  font-size:clamp(1.3rem,2.8vw,1.85rem);
+  line-height:1.5;max-width:22em;margin:0 auto;
+}
+.thesis em{color:var(--gold);font-style:italic}
 
-  /* ---------- CARD + PANEL (grid, click opens explanation beside) ---------- */
-  .pick{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--ink2);cursor:pointer;transition:.2s;text-align:left}
-  .pick:hover{border-color:#333}
-  .pick.active{border-color:var(--gold);background:rgba(200,162,75,.06)}
-  .pick .pn{font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--gold);min-width:26px}
-  .pick .pt{font-family:var(--serif);font-size:.98rem;color:var(--cream)}
+.how{padding:92px 0}
+.eyebrow{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  letter-spacing:.2em;font-size:.9rem;
+  color:var(--ink);margin:0 0 12px;
+}
+.how h2{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:clamp(2.1rem,4.6vw,3.2rem);
+  letter-spacing:.03em;color:var(--gold);
+  margin:0 0 52px;-webkit-text-stroke:1.5px var(--ink);
+}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.step{border-top:3px solid var(--ink);padding-top:20px}
+.step h3{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:1.42rem;letter-spacing:.06em;
+  margin:0 0 8px;color:var(--ink);
+}
+.step p{margin:0;font-size:1.02rem}
 
-  /* ---------- GEAR ---------- */
+.cards{background:var(--red-deep);padding:92px 0}
+.cards h2{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:clamp(2.1rem,4.6vw,3.2rem);
+  letter-spacing:.03em;color:var(--gold);
+  margin:0 0 14px;-webkit-text-stroke:1.5px var(--ink);
+}
+.cards .lede{max-width:34em;margin:0 0 48px;font-size:1.1rem}
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.card-row img{
+  border:3px solid var(--ink);border-radius:8px;
+  box-shadow:9px 9px 0 rgba(13,13,13,.3);
+}
+.card-cap{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  letter-spacing:.14em;font-size:.86rem;
+  margin:14px 0 0;color:var(--ink);
+}
 
-  /* email — quiet, secondary */
-  .keep{padding:70px 0;border-top:1px solid var(--line);text-align:center}
-  .keep .kicker{margin-bottom:12px}
-  .keep h2{font-family:var(--display);font-weight:500;font-size:clamp(1.6rem,3.4vw,2.2rem);margin-bottom:12px}
-  .keep p{color:#bdb8b0;max-width:440px;margin:0 auto 26px;font-size:1rem}
-  .keep .follow{margin:22px auto 0;font-size:.92rem;color:#8a847c}
-  .keep .follow a{color:var(--gold);font-weight:600;transition:.2s}
-  .keep .follow a:hover{color:var(--gold2)}
+.lineage{padding:92px 0;text-align:center}
+.lineage h2{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:clamp(2.1rem,4.6vw,3.2rem);
+  letter-spacing:.03em;color:var(--gold);
+  margin:0 0 26px;-webkit-text-stroke:1.5px var(--ink);
+}
+.lineage p{max-width:34em;margin:0 auto 20px;font-size:1.1rem}
+.names{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  letter-spacing:.16em;font-size:1rem;
+  margin:34px 0 0;color:var(--ink);
+}
 
-  footer{border-top:1px solid var(--line);padding:58px 0 66px;text-align:center}
-  footer .seal-sm{width:72px;height:auto;object-fit:contain;margin:0 auto 22px;display:block;opacity:.9}
-  footer .closer{font-family:var(--display);font-style:italic;font-size:1.35rem;margin-bottom:24px}footer .closer span{color:var(--gold)}
-  footer .fnav{display:flex;gap:24px;justify-content:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;flex-wrap:wrap}
-  footer .fnav a:hover{color:var(--cream)}footer .legal{font-size:11px;letter-spacing:.08em;color:#4a4640}
+.signup{background:var(--ink);padding:92px 0;text-align:center}
+.signup h2{
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:clamp(2.1rem,4.6vw,3.2rem);
+  letter-spacing:.03em;color:var(--gold);margin:0 0 16px;
+}
+.signup p{color:var(--cream);max-width:28em;margin:0 auto 34px}
+.form-wrap{max-width:460px;margin:0 auto 30px}
+.form-wrap iframe{width:100%!important;max-width:460px!important;border:0}
+.close-line{
+  font-style:italic;font-weight:600;
+  font-size:1.2rem;color:var(--gold);margin:0;
+}
 
-  @keyframes rise{to{opacity:1;transform:translateY(0)}}@keyframes fade{to{opacity:1}}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(200,162,75,.55)}70%{box-shadow:0 0 0 9px rgba(200,162,75,0)}100%{box-shadow:0 0 0 0 rgba(200,162,75,0)}}
-  @media (prefers-reduced-motion:reduce){*{animation:none!important}.ecard .inner{transition:none}}
-  @media(max-width:900px){.pick{flex:none;min-width:210px}}
-  @media(max-width:820px){.nav-links{display:none}.nav-logo img{height:52px}.nav-inner{height:84px;gap:12px}.nav-cta{flex:0 0 auto}}
-  @media(max-width:520px){.hero .thesis{font-size:1.12rem;color:#efe9e0}.flip-note{font-size:15px;color:#efe9e0}.section .lead{color:#e0dbd2;font-size:1.02rem}.nav-cta{padding:8px 10px;font-size:8.5px;letter-spacing:.06em}.nav-logo img{height:44px}.featured .ecard{width:300px}}
+.foot{background:var(--ink);color:var(--cream);padding:34px 0 46px;
+  border-top:1px solid rgba(240,193,88,.28)}
+.foot-in{display:flex;justify-content:space-between;
+  align-items:center;gap:20px;flex-wrap:wrap}
+.foot a{color:var(--gold);text-decoration:none}
+.foot a:hover{text-decoration:underline}
+.foot small{opacity:.62;font-size:.86rem}
 
-  .deck-buy{margin-top:52px;display:grid;grid-template-columns:1.35fr 1fr;gap:0;border:1px solid var(--line);border-radius:18px;background:var(--ink2);overflow:hidden}
-  .db-left{padding:44px 42px}
-  .db-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-  .db-left h3{font-family:var(--display);font-weight:500;font-size:2.1rem;line-height:1.16;margin-bottom:16px}
-  .db-left p{font-size:.95rem;color:#b3aea6;line-height:1.62;margin-bottom:22px}
-  .db-facts{list-style:none;display:flex;flex-direction:column;gap:12px}
-  .db-facts li{font-size:.95rem;color:#b3aea6;padding-left:18px;position:relative;line-height:1.5}
-  .db-facts li:before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.75}
-  .db-right{padding:44px 38px;border-left:1px solid var(--line);background:rgba(200,162,75,.028);display:flex;flex-direction:column;justify-content:center;text-align:center}
-  .db-price{margin-bottom:20px}
-  .db-amt{display:block;font-family:var(--serif);font-weight:700;font-size:2.7rem;color:var(--cream);line-height:1}
-  .db-note{display:block;margin-top:7px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
-  .db-cta{display:block;background:var(--gold);color:#0A0A0A;font-weight:700;font-size:13px;letter-spacing:.09em;text-transform:uppercase;padding:17px 0;border-radius:11px;transition:.2s}
-  .db-cta:hover{background:var(--gold2);transform:translateY(-2px)}
-  .db-sub{margin-top:14px;font-size:.78rem;color:#6c665f;line-height:1.45}
-  @media(max-width:820px){
-    .deck-buy{grid-template-columns:1fr}
-    .db-left{padding:34px 26px}
-    .db-left h3{font-size:1.7rem}
-    .db-right{border-left:none;border-top:1px solid var(--line);padding:32px 26px}
-  }
-  @media(max-width:820px){}
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-card{max-width:340px;margin:0 auto}
+  .steps{grid-template-columns:1fr;gap:30px}
+  .card-row{grid-template-columns:1fr;gap:34px}
+  .nav-links a:not(.nav-buy){display:none}
+  .hero{padding:52px 0 70px}
+}
+</style>
+</head>
+<body>
 
-  .wear{margin-top:16px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(100deg,rgba(200,162,75,.05),rgba(200,162,75,.01));padding:38px 42px;display:grid;grid-template-columns:1fr auto;gap:34px;align-items:center}
-  .wc-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-  .wear-copy h3{font-family:var(--display);font-weight:500;font-size:1.9rem;line-height:1.15;margin-bottom:12px}
-  .wear-copy p{font-size:.94rem;color:#b3aea6;line-height:1.62;margin-bottom:16px;max-width:56ch}
-  .wc-items{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--cream)}
-  .wc-items .dot{color:var(--gold);opacity:.6}
-  .wear-cta{white-space:nowrap;background:var(--gold);color:#0A0A0A;border:1px solid var(--gold);font-weight:700;font-size:13px;letter-spacing:.09em;text-transform:uppercase;padding:16px 30px;border-radius:11px;transition:.2s}
-  .wear-cta:hover{background:var(--gold2);border-color:var(--gold2);transform:translateY(-2px)}
-  @media(max-width:820px){
-    .wear{grid-template-columns:1fr;padding:30px 26px;gap:24px}
-    .wear-copy h3{font-size:1.6rem}
-    .wear-cta{text-align:center;padding:16px 0}
-  }
+<div class="bar">FREE SHIPPING ON ALL ORDERS</div>
 
-  .wc-earned{font-family:var(--serif);font-weight:700;font-style:italic;font-size:1.15rem;color:var(--gold);margin-bottom:16px;letter-spacing:.01em}
+<header class="wrap">
+  <nav class="nav">
+    <a class="nav-mark" href="/">
+      <img src="gear.png" alt="">
+      <span>ENFIGHTEN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">The Deck</a>
+      <a href="#lineage">Lineage</a>
+      <a href="#keep">Newsletter</a>
+      <a class="nav-buy" href="https://shop.enfightenment.com">Shop</a>
+    </div>
+  </nav>
+</header>
 
-  @media(max-width:820px){
-    .deck-buy{grid-template-columns:1fr;gap:0}
-    .db-left{padding:30px 24px 22px}
-    .db-left h3{font-size:1.72rem;line-height:1.18}
-    .db-left p{font-size:1rem;color:#c9c4bc;margin-bottom:18px}
-    .db-facts li{font-size:.95rem;color:#b3aea6}
-    /* the ask sits RIGHT under the pitch — no scroll gap */
-    .db-right{border-left:none;border-top:1px solid var(--line);
-              padding:24px 24px 28px;background:rgba(200,162,75,.05)}
-    .db-price{display:flex;align-items:baseline;justify-content:center;gap:12px;margin-bottom:16px}
-    .db-amt{font-size:2.5rem}
-    .db-note{margin-top:0}
-    .db-cta{padding:19px 0;font-size:14px}
-    .db-sub{font-size:.85rem}
-  }
+<main>
 
-  .signup-embed{max-width:520px;margin:0 auto;min-height:64px}
-  .signup-embed iframe{width:100%!important;border:0;color-scheme:normal}.signup-fallback{display:inline-block;background:var(--gold);color:#0A0A0A;font-weight:700;font-size:13px;letter-spacing:.09em;text-transform:uppercase;padding:16px 30px;border-radius:11px}
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>You don't read wisdom.<br>You fight for it.</h1>
+        <div class="rule"></div>
+        <p>52 cards. One teaching each. Pull one at random and carry it
+           for a week — on the mat, at work, wherever your fight is.</p>
+        <a class="cta" href="#keep">Get the first card</a>
+      </div>
+      <div class="hero-card">
+        <img src="card-front.png" alt="An Enfighten card, front">
+      </div>
+    </div>
+  </section>
 
-  .hero .ecard .front .lock{width:46%}
-  .spread .ecard .front .lock{width:44%}
-  .ecard .front{position:relative}
-.signup-embed{max-width:520px;margin:0 auto;min-height:64px;overflow:hidden}.signup-embed iframe{width:100%!important;max-width:100%!important;min-width:0!important;border:0;color-scheme:normal;display:block}@media(max-width:440px){.signup-embed{max-width:100%;padding:0}.signup-embed iframe{width:400px!important;min-width:400px!important;transform:scale(var(--emb,.82));transform-origin:top center}}@media(max-width:400px){.signup-embed iframe{transform:scale(.76)}}@media(max-width:360px){.signup-embed iframe{transform:scale(.68)}}  #buy{scroll-margin-top:110px}
-</style><link rel="icon" type="image/png" href="data:image/png;base64,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"><link rel="apple-touch-icon" href="data:image/png;base64,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">
-</head><body>
+  <section class="thesis">
+    <div class="wrap">
+      <p>A teaching you read is borrowed. A teaching you fight for is
+         yours — it changes you from the inside. <em>That's enfighten.</em></p>
+    </div>
+  </section>
 
-<header class="nav"><div class="wrap nav-inner">
-  <a class="nav-logo" href="#top"><img src="data:image/png;base64,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" alt="Enfightenment"></a>
-  <div class="nav-right"><nav class="nav-links">
-    <a href="#deck">The Deck</a><a href="#gear">Gear</a>
-  </nav><a class="nav-cta" href="#buy">Get the deck</a></div>
-</div></header>
+  <section class="how wrap" id="how">
+    <p class="eyebrow">How it works</p>
+    <h2>Pull one. Live it. Repeat.</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>Draw blind</h3>
+        <p>Every card front is identical, so you can't pick a favorite.
+           Fan them face-up and you still don't know what you're taking.</p>
+      </div>
+      <div class="step">
+        <h3>Read the back</h3>
+        <p>Three words on the front of the teaching, then where it came
+           from and what it cost to learn it.</p>
+      </div>
+      <div class="step">
+        <h3>Live it a week</h3>
+        <p>Not a quote to admire. A thing to try, fail at, and try
+           again until it's in your body.</p>
+      </div>
+    </div>
+  </section>
 
-<main id="top">
-
-  <!-- HERO: featured card, flip + prev/next -->
-  <section class="hero"><div class="glow"></div><img class="mark-bg" aria-hidden="true" alt="" src="data:image/png;base64,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">
-    <div class="wrap in">
-      <div class="eyebrow"><span class="dot"></span>Fighting Wisdom · 52 cards</div>
-      <h1>You don’t read wisdom.<br>You <em>fight</em> for it.</h1>
-      <p class="thesis">A teaching you read is borrowed. A teaching you fight for is yours — it changes you from the inside. That’s enfightenment.</p>
-      <div class="featured">
-        <div class="ecard" id="feat" onclick="this.classList.toggle('flipped')"></div>
-        <div class="flip-note">Tap the card to flip it</div>
-        <div class="fctrl">
-          <button onclick="step(-1)" aria-label="Previous card">‹</button>
-          <span class="count" id="count"></span>
-          <button onclick="step(1)" aria-label="Next card">›</button>
+  <section class="cards">
+    <div class="wrap">
+      <h2>Two of the fifty-two</h2>
+      <p class="lede">Every teaching comes from a room, a training
+         partner, or a mistake that cost something.</p>
+      <div class="card-row">
+        <div>
+          <img src="card-17.png" alt="Card 17 back — Know when to move">
+          <p class="card-cap">17 · Know when to move</p>
+        </div>
+        <div>
+          <img src="card-52.png" alt="Card 52 back — Cross the street">
+          <p class="card-cap">52 · Cross the street</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- THE SPREAD: a few cards, flip each in place -->
-  <section class="section" id="deck"><div class="wrap">
-    <div class="head"><div class="kicker">The spread</div>
-      <h2>Six of them. There are fifty-two.</h2>
-      <p class="lead">Tap one. Read the fight on the back. This is a taste — the rest are in the deck, and the deck decides which one you need.</p></div>
-    <div class="flip-note spread-note">Tap any card to read the fight on the back →</div>
-    <div class="spread" id="spread"></div>
-  </div></section>
+  <section class="lineage wrap" id="lineage">
+    <h2>Where this comes from</h2>
+    <p>Four decades of training, and not the dabbling kind. A decade
+       under Hidetaka Nishiyama until his death, the karate line running
+       back through him to Funakoshi. Iyengar and Ashtanga yoga.
+       Six years of jiu-jitsu with John Danaher.</p>
+    <p>The teachings on these cards were handed down, tested, and paid
+       for. None of them came out of a book.</p>
+    <p class="names">FUNAKOSHI · NISHIYAMA · IYENGAR · DANAHER</p>
+  </section>
 
-  <!-- CARD + PANEL: pick a card, read explanation beside -->
-
-  <!-- GEAR -->
-    <section class="section" id="gear"><div class="wrap">
-    <div class="head"><div class="kicker">The gear</div>
-      <h2>Don't play it safe.</h2>
-      <p class="lead">There are many roads up the mountain. This is one of them. Something comes at you — a person, a moment, an energy — and you handle it before you've thought about it. Let it go by, meet it, back it up, merge with it. It just comes out of you, because you trained it until the thinking dropped away. Mind of no mind. You just are. If you have to think, you're already behind. That's enfightenment.</p></div>
-    <div class="deck-buy" id="buy">
-      <div class="db-left">
-        <div class="db-eyebrow">The Deck</div>
-        <h3>Fifty-two things you<br>can't learn by reading.</h3>
-        <p>This isn't a class. It's what makes the class land — and the job, and the traffic, and the kid who's testing you. Pull a card. Carry it. That's your practice: what to work on, what to let go of, what stops having a hold on you. Do that fifty-two times and you're a different person.</p>
-        <ul class="db-facts">
-          <li>52 cards, drawn at random. No order, no levels — just what you need.</li>
-          <li>Drawn from forty years of training. Still at it.</li>
-        </ul>
+  <section class="signup" id="keep">
+    <div class="wrap">
+      <h2>One teaching. Every week.</h2>
+      <p>A card from the deck and what it actually means in practice.
+         The deck ships soon — subscribers hear first.</p>
+      <div class="form-wrap">
+        <script async
+          src="https://subscribe-forms.beehiiv.com/v3/loader.js"
+          data-beehiiv-form="f883cfed-92c8-4cfd-85f0-13badbfa1c27"></script>
       </div>
-      <div class="db-right">
-        <div class="db-price"><span class="db-amt">$27</span><span class="db-note">Coming soon</span></div>
-        <a class="db-cta" href="#keep">Get on the list →</a>
-        <div class="db-sub">Not out yet. Be first to know.</div>
-      </div>
+      <p class="close-line">Become Enfightened.</p>
     </div>
-    <div class="wear">
-      <div class="wear-copy">
-        <div class="wc-eyebrow">The Gear</div>
-        <h3>Stay focused.</h3>
-        <p>All the power in the world does nothing until it has direction. The cards, the gear — it all does one job. It keeps you moving forward, a nudge along the way when you need one. You still have the work to do. But you won't be doing it blind. This is a guide built out of thousands of years of wisdom, trained and handed down, one person to the next — and now it's on you.</p>
-        <div class="wc-earned">You can't buy it. But you can wear it.</div>
-        <div class="wc-items"><span>Tees</span></div>
-      </div>
-      <a class="wear-cta" href="https://shop.enfightenment.com" target="_blank" rel="noopener">Get the gear →</a>
-    </div>
-  </div></section>
-
-  <!-- EMAIL: quiet, secondary -->
-  <section class="keep" id="keep"><div class="wrap">
-    <div class="kicker">The deeper cut</div>
-    <h2>One card a week.<br>The full teaching by email.</h2>
-    <p>A card gives you the teaching in a breath. The email gives you the rest — where it came from, the lineage behind it, the story that made it real, and how to actually train it. The depth that won’t fit on a card. One week at a time, become enfightened.</p>
-    <div class="signup-embed">
-      <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f883cfed-92c8-4cfd-85f0-13badbfa1c27"></script>
-      <noscript><a class="signup-fallback" href="https://enfightenment.beehiiv.com/subscribe" target="_blank" rel="noopener">First Step →</a></noscript>
-    </div>
-    <p class="follow">Or follow along on Instagram — <a href="https://instagram.com/enfightenment" target="_blank" rel="noopener">@enfightenment</a> — a teaching in your feed.</p>
-  </div></section>
+  </section>
 
 </main>
 
-<footer><div class="wrap">
-  <img class="seal-sm" src="data:image/png;base64,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" alt="Enfightenment">
-  <div class="closer">Become <span>Enfightened.</span></div>
-  <nav class="fnav"><a href="#deck">The Deck</a><a href="#gear">Gear</a><a href="https://instagram.com/enfightenment" target="_blank" rel="noopener">Instagram</a></nav>
-  <div class="legal">Enfightenment · Austin, Texas · &copy; 2026</div>
-</div></footer>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <small>© 2026 Enfighten · Some Fight Left LLC · Austin, Texas</small>
+    <div>
+      <a href="https://shop.enfightenment.com">Shop</a> ·
+      <a href="https://instagram.com/enfighten">Instagram</a> ·
+      <a href="mailto:enfighten@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
 
-<script>
-const CARDS = [{"n": "02", "teach": ["Give up control", "to get", "control."], "key": 2, "quote": "To get control you have to give up control.", "beats": ["The grip you think is strength is what's killing your strength. Tighten the arm and it slows. Let go and it floats — faster, farther, and the snap at the end is real, because it came from nothing.", "Nothing to everything. Release and there's a spring waiting; the next one is already loaded. Stay contracted and there's no release, so no spring, so no next. The pattern tightens — the body, then the thought, then the life.", "Forty years in and I'm still too tight. I haven't digested this one fully yet. That's the work."]}, {"n": "03", "teach": ["The true", "opponent is", "yourself."], "key": 2, "quote": "The true opponent is yourself.", "beats": ["You bow to them. Not for the fight — for the mirror. They didn't beat you. They showed you where you're still holding back, still running hot, still unable to control what's inside your own body and mind.", "And when you don't learn it, it comes back. It's circular. Different face, different room, different decade — the same lesson standing in front of you again. It was never the person. It's the thing in you that hasn't been shaped yet, waiting for the next face to reveal it. Unless you learn it first.", "So you keep refining. That's the path — you just walk it. And if you stay on it long enough, the path itself adjusts you without you knowing. You don't feel the change. You just stop meeting that face."]}, {"n": "09", "teach": ["Many roads", "up the", "mountain."], "key": 2, "quote": "Many roads up the mountain.", "beats": ["Any of them will do it. Tea ceremony. Archery. Watching a river long enough. They used to make an art of pickpocketing. Every one of them demands the same thing — the reps, the refinement, the years — and every one of them will take you up.", "For me, what the fighting arts have that the others don't is the fear sweat. The response that arrives before the thought. The merging — the moment you stop being two people. I've never found that anywhere else, so this is my road.", "Go deep enough on any road and the same truths show up — because you walked beside them long enough that they revealed themselves. So pick a road and walk it until your feet blister and the blisters turn to callus. The callus is the sign you're still walking. The mountain never ends."]}, {"n": "24", "teach": ["You are the", "conductor."], "key": 1, "quote": "You are the conductor. Everything moves around you.", "beats": ["Row a boat. The oar pulls the water, but the power doesn't come from the oar — it comes from the oarlock. The fixed point on the rail. If that slides, you can pull with everything you have and the boat goes nowhere. You need something that doesn't move to move anything at all.", "So be the oarlock. Not rigid — rigid snaps. They say be green bamboo: hard outside, hollow in the middle so there's still room to grow, and it bends in the wind without breaking. Strong and fluid at once. Forty years in and I still don't fully understand how you're meant to be both.", "But when you have it, they move around you. You're not being pulled — you're the still point they're pulling against. And then it's your choice when to move. Not that you can't be moved. That you decide."]}, {"n": "28", "teach": ["Once you're", "enlightened,", "keep training."], "key": 2, "quote": "Once you're enlightened, you show up and train the next day.", "beats": ["Maybe you're enlightened. Maybe you're not. Maybe you are and you don't know it. Doesn't matter — chop wood, carry water. You win the tournament, the thing finally clicks. Great. Tuesday's still coming, and there's another session.", "And that next session should break you. On purpose. Because after a win, pride is already setting up inside you like concrete — and pride is a habit that hardens, and once it's hard you can't change shape anymore. So you go in and get smashed, and it comes back out of you before it sets.", "You're either growing or you're dying. There's no holding still. So don't attach to the victory and don't attach to the enlightenment. The moment you own it, you've stopped. You just show up and do the work. That's all there ever was."]}, {"n": "38", "teach": ["Stay relaxed", "in the", "fire."], "key": 2, "quote": "Stay relaxed in the fire.", "beats": ["There are channels running through you, and energy runs through them. In the fire — the moment it goes real — more current comes through. If you haven't been conditioned for it, you blow. The circuit trips and everything shuts down.", "So you train in it. Not to fake calm — to raise what you can carry. Back into the fire again and again, until the body stops treating the current as an emergency and lets it pass through. The relaxation isn't the absence of fire. It's what happens when your wiring is big enough for it.", "You can get choked out. Your arm can snap. And you're calm — not because you don't feel it, but because you've been here enough times that the timing is in you. No hurting yourself trying not to get hurt. Go back enough and the fire stops being a different place. Then you're that person everywhere."]}];
-
-const WM = '<span class="c">EN</span><span class="g">FIGHT</span><span class="c">ENMENT</span>';
-const GEAR = document.querySelector('footer .seal-sm').src;
-
-function faceFront(c){
-  const teach = c.teach.map((line,i)=> i===c.key ? `<span class="k">${line}</span>` : line).join('<br>');
-  return `<div class="face front">
-    <div class="top"><img class="lock" src="${GEAR}" alt=""></div>
-    <div class="teach">${teach}</div>
-    <div class="num">${c.n}</div>
-    <div class="rule"></div>
-    <div class="fwm">${WM}</div>
-  </div>`;
-}
-function faceBack(c){
-  const beats = c.beats.map(b=>`<li>${b}</li>`).join('');
-  return `<div class="face back">
-    <div class="wm">${WM}</div>
-    <div class="q">&ldquo;${c.quote}&rdquo;</div>
-    <ul class="beats">${beats}</ul>
-    <div class="num">${c.n}</div>
-    <div class="rule"></div>
-    <div class="close">Become Enfightened.</div>
-  </div>`;
-}
-function cardHTML(c){ return `<div class="inner">${faceFront(c)}${faceBack(c)}</div>`; }
-
-let fi=0;
-const feat=document.getElementById('feat'), count=document.getElementById('count');
-function renderFeat(){ feat.classList.remove('flipped'); feat.innerHTML=cardHTML(CARDS[fi]); count.textContent=`${fi+1} / ${CARDS.length}`; }
-function step(d){ fi=(fi+d+CARDS.length)%CARDS.length; renderFeat(); }
-renderFeat();
-
-const spread=document.getElementById('spread');
-CARDS.forEach((c)=>{
-  const el=document.createElement('div'); el.className='ecard'; el.innerHTML=cardHTML(c);
-  el.onclick=()=>el.classList.toggle('flipped'); spread.appendChild(el);
-});
-</script>
-</body></html>
+</body>
+</html>
