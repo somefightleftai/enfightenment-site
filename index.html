@@ -1,352 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ENFIGHTEN — 52 cards of fighting wisdom</title>
-<meta name="description" content="A deck of 52 fighting-wisdom cards drawn from thirty-seven years of training. Pull one. Live it for a week.">
+#!/usr/bin/env python3
+# ENFIGHTEN — RED CARD  (teeth gear + red ground)
+from PIL import Image, ImageDraw, ImageFont
+import numpy as np
 
-<meta property="og:title" content="ENFIGHTEN">
-<meta property="og:description" content="You don't read wisdom. You fight for it. 52 cards, one a week.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://enfighten.com">
+BRIGHT=(240,193,88); DEEP=(198,150,58); CREAM=(240,237,230)
+BLACK=(13,13,13); RED=(192,57,43); GREY=(150,120,115)
+CW,CH=1050,1500
+M=int(CW*0.037); RAD=int(CW*0.033); M2=M+14
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+BEB="BebasNeue-Regular.ttf"
+DV="/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
+DVB="/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
+DVBI="/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf"
 
-<script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+def F(p,s): return ImageFont.truetype(p,s)
+def trim(img):
+    a=np.array(img); ys,xs=np.nonzero(a[...,3]>10)
+    return img.crop((xs.min(),ys.min(),xs.max()+1,ys.max()+1))
 
-<style>
-:root{
-  --red:#C0392B;
-  --gold:#F0C158;
-  --ink:#0D0D0D;
-  --cream:#F0EDE6;
-  --red-deep:#A32E22;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *{animation:none!important;transition:none!important}
-}
-body{
-  margin:0;
-  background:var(--red);
-  color:var(--cream);
-  font-family:'Newsreader',Georgia,serif;
-  font-size:18px;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-img{max-width:100%;display:block}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+# --- assets ---
+GEAR=trim(Image.open('G_A.png').convert('RGBA'))
 
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+def recolor(img,color):
+    a=np.array(img).copy()
+    m=a[...,3]>10
+    a[m,0],a[m,1],a[m,2]=color
+    return Image.fromarray(a,'RGBA')
 
-.bar{
-  background:var(--ink);color:var(--gold);
-  font-family:'Bebas Neue',Impact,sans-serif;
-  letter-spacing:.18em;font-size:.82rem;
-  text-align:center;padding:11px 16px;
-}
+WORD=trim(Image.open('WORD_bebas_outlined.png').convert('RGBA'))
 
-.nav{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:24px;padding:22px 0;
-}
-.nav-mark{display:flex;align-items:center;gap:14px;text-decoration:none}
-.nav-mark img{width:70px;height:auto}
-.nav-mark span{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:2.1rem;letter-spacing:.06em;color:var(--gold);
-  -webkit-text-stroke:1.5px var(--ink);
-}
-.nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:1.02rem;letter-spacing:.1em;
-  color:var(--cream);text-decoration:none;
-  border-bottom:2px solid transparent;padding-bottom:2px;
-  transition:border-color .18s;
-}
-.nav-links a:hover{border-color:var(--gold)}
-.nav-buy{
-  background:var(--gold);color:var(--ink)!important;
-  padding:9px 18px;border:2px solid var(--ink);
-  border-radius:5px;border-bottom-width:2px!important;
-}
-.nav-buy:hover{background:#f6cf78}
+def base():
+    img=Image.new("RGBA",(CW,CH),RED+(255,)); d=ImageDraw.Draw(img)
+    d.rounded_rectangle((M,M,CW-M,CH-M),radius=RAD,outline=BRIGHT,width=4)
+    d.rounded_rectangle((M2,M2,CW-M2,CH-M2),radius=RAD-8,outline=BLACK,width=2)
+    return img,d
 
-.hero{padding:60px 0 92px}
-.hero-grid{
-  display:grid;grid-template-columns:1.28fr .72fr;
-  gap:56px;align-items:center;
-}
-.hero h1{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(3rem,7.6vw,6rem);
-  line-height:.92;letter-spacing:.01em;
-  color:var(--gold);margin:0 0 26px;
-  -webkit-text-stroke:1.5px var(--ink);
-}
-.rule{height:3px;background:var(--ink);width:220px;margin:0 0 26px;opacity:.75}
-.hero p{font-size:1.22rem;max-width:26em;margin:0 0 34px}
-.cta{
-  display:inline-block;
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:1.22rem;letter-spacing:.1em;
-  background:var(--gold);color:var(--ink);
-  text-decoration:none;padding:15px 38px;
-  border:3px solid var(--ink);border-radius:6px;
-  box-shadow:5px 5px 0 var(--ink);
-  transition:transform .12s,box-shadow .12s;
-}
-.cta:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
-.cta:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink)}
-.hero-card img{
-  width:100%;max-width:400px;margin-left:auto;border:3px solid var(--ink);border-radius:8px;
-  box-shadow:12px 12px 0 rgba(13,13,13,.32);
-}
+def sp_w(d,t,f,tr): return sum(d.textlength(c,font=f) for c in t)+tr*(len(t)-1)
+def sp_draw(d,t,x,y,f,col,tr):
+    for c in t: d.text((x,y),c,font=f,fill=col); x+=d.textlength(c,font=f)+tr
+def wrap(d,t,f,mw):
+    out=[];cur=""
+    for w in t.split():
+        test=(cur+" "+w).strip()
+        if d.textlength(test,font=f)<=mw: cur=test
+        else: out.append(cur); cur=w
+    if cur: out.append(cur)
+    return out
 
-.thesis{
-  background:var(--ink);color:var(--cream);
-  padding:88px 0;text-align:center;
-}
-.thesis p{
-  font-size:clamp(1.3rem,2.8vw,1.85rem);
-  line-height:1.5;max-width:22em;margin:0 auto;
-}
-.thesis em{color:var(--gold);font-style:italic}
+# ---------------- FRONT ----------------
+def build_front(out):
+    img,d=base(); tr=16
+    f1=F(BEB,44); t1="YOU DON'T READ WISDOM"
+    w1=sp_w(d,t1,f1,tr); sp_draw(d,t1,(CW-w1)/2,int(CH*0.082),f1,BRIGHT,tr)
+    f1b=F(BEB,44); t1b="YOU FIGHT FOR IT"
+    w1b=sp_w(d,t1b,f1b,tr); sp_draw(d,t1b,(CW-w1b)/2,int(CH*0.082)+54,f1b,BRIGHT,tr)
 
-.how{padding:92px 0}
-.eyebrow{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  letter-spacing:.2em;font-size:.9rem;
-  color:var(--cream);opacity:.85;margin:0 0 12px;
-}
-.how h2{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(2.1rem,4.6vw,3.2rem);
-  letter-spacing:.03em;color:var(--gold);
-  margin:0 0 52px;-webkit-text-stroke:1.5px var(--ink);
-}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
-.step{border-top:3px solid rgba(13,13,13,.55);padding-top:20px}
-.step h3{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:1.42rem;letter-spacing:.06em;
-  margin:0 0 8px;color:var(--gold);
-}
-.step p{margin:0;font-size:1.02rem}
+    gw=int(CW*0.62*0.87)
+    g=GEAR.resize((gw,int(GEAR.height*gw/GEAR.width)),Image.LANCZOS)
+    gy=287+46
+    img.alpha_composite(g,((CW-gw)//2,gy))
 
-.cards{background:var(--red-deep);padding:92px 0}
-.cards h2{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(2.1rem,4.6vw,3.2rem);
-  letter-spacing:.03em;color:var(--gold);
-  margin:0 0 14px;-webkit-text-stroke:1.5px var(--ink);
-}
-.cards .lede{max-width:34em;margin:0 0 48px;font-size:1.1rem}
-.card-row{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.card-single{max-width:460px}
-.card-single img{border:3px solid var(--ink);border-radius:8px;box-shadow:9px 9px 0 rgba(13,13,13,.3)}
-.card-row img{
-  border:3px solid var(--ink);border-radius:8px;
-  box-shadow:9px 9px 0 rgba(13,13,13,.3);
-}
-.card-cap{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  letter-spacing:.14em;font-size:.86rem;
-  margin:14px 0 0;color:var(--gold);
+    ww=int(CW*0.62)
+    wm=WORD.resize((ww,int(WORD.height*ww/WORD.width)),Image.LANCZOS)
+    img.alpha_composite(wm,((CW-ww)//2,gy+g.height+int(CH*0.012)+30))
+
+    f2=F(BEB,44); t2="52 TEACHINGS"
+    w2=sp_w(d,t2,f2,tr)
+    d.line((CW/2-(w2/2+50),int(CH*0.775)+30,CW/2+(w2/2+50),int(CH*0.775)+30),fill=BLACK,width=2)
+    sp_draw(d,t2,(CW-w2)/2,int(CH*0.815)+30,f2,BRIGHT,tr)
+    f3=F(DVB,50); t3="Michael Weiner"
+    w3=d.textlength(t3,font=f3); d.text(((CW-w3)/2,int(CH*0.815)+30+86),t3,font=f3,fill=BLACK)
+    img.convert("RGB").save(out)
+
+# ---------------- BACK ----------------
+def build_back(card,out):
+    img,d=base()
+    y=int(CH*0.075)
+    mw=CW-2*(M2+42)
+    segs=[(t if isinstance(t,tuple) else (t,"cream")) for t in card["teaching"]]
+    segs=list(segs)
+    segs[0]=('\u201c'+segs[0][0], segs[0][1])
+    segs[-1]=(segs[-1][0]+'\u201d', segs[-1][1])
+
+    TSIZE=72; TMIN=40; tsize=TSIZE
+    while tsize>TMIN:
+        ft=F(DVB,tsize)
+        if max(d.textlength(t,font=ft) for t,_ in segs) <= mw: break
+        tsize-=2
+    ft=F(DVB,tsize)
+    for txt,col in segs:
+        c=CREAM if col=="cream" else BRIGHT
+        tw=d.textlength(txt,font=ft)
+        d.text((CW/2-tw/2,y),txt,font=ft,fill=c); y+=int(tsize*1.16)
+    y+=int(tsize*0.16); y+=int(CH*0.020)
+
+    d.line((M2+70,y,CW-M2-70,y),fill=BLACK,width=2); y+=int(CH*0.032)
+
+    body_top=y; limit=int(CH*0.818); size=40
+    while size>=22:
+        fb=F(DV,size); lh=int(size*1.39); yy=body_top; fits=True
+        for b in card["beats"]:
+            for ln in wrap(d,b,fb,mw):
+                yy+=lh
+                if yy>limit: fits=False; break
+            if not fits: break
+            yy+=int(size*0.65)
+        if fits: break
+        size-=1
+    fb=F(DV,size); lh=int(size*1.39); y=body_top
+    for b in card["beats"]:
+        for ln in wrap(d,b,fb,mw): d.text((M2+42,y),ln,font=fb,fill=CREAM); y+=lh
+        y+=int(size*0.65)
+
+    fn=F(DVB,40); wn=d.textlength(card["num"],font=fn)
+    d.text((CW/2-wn/2,int(CH*0.838)),card["num"],font=fn,fill=BLACK)
+    dy=int(CH*0.878); d.line((M2+70,dy,CW-M2-70,dy),fill=BLACK,width=2)
+    inner_bottom=CH-M2; avail=inner_bottom-dy
+    csize=44
+    while csize>26:
+        fc=F(DVBI,csize); close="Become Enfightened."
+        tmp=Image.new("RGBA",(int(d.textlength(close,font=fc))+40,csize*4),(0,0,0,0))
+        ImageDraw.Draw(tmp).text((20,csize),close,font=fc,fill=BRIGHT)
+        ink=trim(tmp)
+        if ink.height <= avail-36 and ink.width <= CW-2*(M2+40): break
+        csize-=2
+    cy=(dy+inner_bottom)//2
+    img.alpha_composite(ink,(int(CW/2-ink.width/2),int(cy-ink.height/2)))
+    img.convert("RGB").save(out)
+
+CARD={
+ "num":"03",
+ "teaching":[("The true opponent","cream"),("is yourself.","gold")],
+ "beats":[
+"You bow to them. Not for the fight \u2014 for the mirror. They didn't beat you. They showed you where you're still holding back, still running hot, still unable to control what's inside your own body and mind.",
+"And when you don't learn it, it comes back. It's circular. Different face, different room, different decade \u2014 the same lesson standing in front of you again. It was never the person. It's the thing in you that hasn't been shaped yet, waiting for the next face to reveal it. Unless you learn it first.",
+"So you keep refining. That's the path \u2014 you just walk it. And if you stay on it long enough, the path itself adjusts you without you knowing. You don't feel the change. You just stop meeting that face.",
+ ],
 }
 
-.lineage{padding:92px 0;text-align:center}
-.lineage h2{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(2.1rem,4.6vw,3.2rem);
-  letter-spacing:.03em;color:var(--gold);
-  margin:0 0 26px;-webkit-text-stroke:1.5px var(--ink);
-}
-.lineage p{max-width:36em;margin:0 auto 22px;font-size:1.08rem}
-.lineage em{color:var(--gold);font-style:italic}
-.names{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  letter-spacing:.16em;font-size:1rem;
-  margin:34px 0 0;color:var(--gold);
-}
-
-.signup{background:var(--ink);padding:92px 0;text-align:center}
-.signup h2{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(2.1rem,4.6vw,3.2rem);
-  letter-spacing:.03em;color:var(--gold);margin:0 0 16px;
-}
-.signup p{color:var(--cream);max-width:28em;margin:0 auto 34px}
-.form-wrap{max-width:460px;margin:0 auto 30px}
-.form-wrap iframe{width:100%!important;max-width:460px!important;border:0}
-.close-line{
-  font-style:italic;font-weight:600;
-  font-size:1.2rem;color:var(--gold);margin:0;
-}
-
-.foot{background:var(--ink);color:var(--cream);padding:34px 0 46px;
-  border-top:1px solid rgba(240,193,88,.28)}
-.foot-in{display:flex;justify-content:space-between;
-  align-items:center;gap:20px;flex-wrap:wrap}
-.foot a{color:var(--gold);text-decoration:none}
-.foot a:hover{text-decoration:underline}
-.foot small{opacity:.62;font-size:.86rem}
-
-@media (max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:44px}
-  .hero-card{max-width:340px;margin:0 auto}
-  .hero-card img{margin:0 auto}
-  .steps{grid-template-columns:1fr;gap:30px}
-  .card-row{grid-template-columns:1fr;gap:34px}
-  .card-single{margin:0 auto}
-  .nav-links a:not(.nav-buy){display:none}
-  .hero{padding:52px 0 70px}
-  .nav-mark img{width:56px}
-  .nav-mark span{font-size:1.7rem}
-}
-</style>
-</head>
-<body>
-
-<div class="bar">FREE SHIPPING ON ALL ORDERS</div>
-
-<header class="wrap">
-  <nav class="nav">
-    <a class="nav-mark" href="/">
-      <img src="gear.png" alt="">
-      <span>ENFIGHTEN</span>
-    </a>
-    <div class="nav-links">
-      <a href="#how">The Deck</a>
-      <a href="#lineage">Lineage</a>
-      <a href="#keep">Newsletter</a>
-      <a class="nav-buy" href="https://shop.enfightenment.com">Shop</a>
-    </div>
-  </nav>
-</header>
-
-<main>
-
-  <section class="hero wrap">
-    <div class="hero-grid">
-      <div>
-        <h1>You don't read wisdom.<br>You fight for it.</h1>
-        <div class="rule"></div>
-        <p>52 cards. One teaching each. Pull one at random and carry it
-           for a week — on the mat, at work, wherever your fight is.</p>
-        <a class="cta" href="#keep">Get the first card</a>
-      </div>
-      <div class="hero-card">
-        <img src="card-front.png" alt="An Enfighten card, front">
-      </div>
-    </div>
-  </section>
-
-  <section class="thesis">
-    <div class="wrap">
-      <p>A teaching you read is borrowed. A teaching you fight for is
-         yours — it changes you from the inside. <em>That's enfighten.</em></p>
-    </div>
-  </section>
-
-  <section class="how wrap" id="how">
-    <p class="eyebrow">How it works</p>
-    <h2>Pull one. Live it. Repeat.</h2>
-    <div class="steps">
-      <div class="step">
-        <h3>Draw blind</h3>
-        <p>Every card front is identical, so you can't pick a favorite.
-           Fan them face-up and you still don't know what you're taking.</p>
-      </div>
-      <div class="step">
-        <h3>Read the back</h3>
-        <p>Three words on the front of the teaching, then where it came
-           from and what it cost to learn it.</p>
-      </div>
-      <div class="step">
-        <h3>Live it a week</h3>
-        <p>Not a quote to admire. A thing to try, fail at, and try
-           again until it's in your body.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="cards">
-    <div class="wrap">
-      <h2>One of the fifty-two</h2>
-      <p class="lede">Every teaching comes from a room, a training
-         partner, or a mistake that cost something.</p>
-      <div class="card-single">
-        <div>
-          <img src="card-52.png" alt="Card 52 back — Cross the street">
-          <p class="card-cap">52 · Cross the street</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="lineage wrap" id="lineage">
-    <h2>Where this comes from</h2>
-    <p>Karate and yoga, started the same year at twenty-five.
-       Thirty-seven years later both are still daily, and the other
-       arts came in alongside them.</p>
-    <p>Fourteen years of daily training under Sensei Nishiyama, up to
-       the end of his life. And under Aiko-san — his assistant, and a
-       master in her own right. Sensei Nishiyama taught the class.
-       Afterward Aiko-san taught hers, in the office.</p>
-    <p>She's the part nobody writes down. A ballet dancer who came to
-       America around the same time Sensei Nishiyama did, and who taught
-       him movement and breath. She'd tell us you have to take from
-       Sensei Nishiyama — he doesn't always explain everything, so you
-       watch, and you learn from the movement. She said those last years
-       were his best teaching. Less hard repetition. More internal, more
-       breath.</p>
-    <p>Twenty-seven years under Sensei Rokah, Sensei Nishiyama's top
-       student — before, during, and after. He filled the gaps and drove
-       the repetition the other two expected you to already have.</p>
-    <p>A decade of jiu-jitsu — Gracie Humaitá, then John Danaher, then
-       B-Team. Now at Black Widow MMA: jiu-jitsu, Muay Thai, wrestling,
-       and the karate I keep training on my own, all of it going into
-       the same thing.</p>
-    <p>These teachings were handed down, tested, and paid for. None of
-       them came out of a book.</p>
-    <p class="names">FUNAKOSHI · NISHIYAMA · AIKO-SAN · ROKAH · DANAHER</p>
-  </section>
-
-  <section class="signup" id="keep">
-    <div class="wrap">
-      <h2>One teaching. Every week.</h2>
-      <p>A card from the deck and what it actually means in practice.
-         The deck ships soon — subscribers hear first.</p>
-      <div class="form-wrap">
-        <script async
-          src="https://subscribe-forms.beehiiv.com/v3/loader.js"
-          data-beehiiv-form="f883cfed-92c8-4cfd-85f0-13badbfa1c27"></script>
-      </div>
-      <p class="close-line">Become Enfightened.</p>
-    </div>
-  </section>
-
-</main>
-
-<footer class="foot">
-  <div class="wrap foot-in">
-    <small>© 2026 Enfighten · Some Fight Left LLC · Austin, Texas</small>
-    <div>
-      <a href="https://shop.enfightenment.com">Shop</a> ·
-      <a href="https://instagram.com/enfighten">Instagram</a> ·
-      <a href="mailto:enfighten@gmail.com">Email</a>
-    </div>
-  </div>
-</footer>
-
-</body>
-</html>
+if __name__=="__main__":
+    n=CARD["num"]
+    build_front(f"CARD{n}_front.png")
+    build_back(CARD,f"CARD{n}_back.png")
+    f=Image.open(f"CARD{n}_front.png"); b=Image.open(f"CARD{n}_back.png")
+    g=40; pair=Image.new("RGB",(f.width+b.width+g,f.height),(40,40,40))
+    pair.paste(f,(0,0)); pair.paste(b,(f.width+g,0)); pair.save(f"CARD{n}_pair.png")
+    print("built card",n,f.size,b.size)
