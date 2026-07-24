@@ -24,6 +24,7 @@
   --ink:#0D0D0D;
   --cream:#F0EDE6;
   --red-deep:#A32E22;
+  --gutter:24px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -39,12 +40,18 @@ body{
   font-size:18px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.wrap{
+  max-width:1120px;
+  margin-left:auto;margin-right:auto;
+  padding-left:var(--gutter);
+  padding-right:var(--gutter);
+}
 
 .bar{
   background:var(--ink);color:var(--gold);
@@ -57,14 +64,14 @@ a{color:inherit}
   display:flex;align-items:center;justify-content:space-between;
   gap:24px;padding:22px 0;
 }
-.nav-mark{display:flex;align-items:center;gap:14px;text-decoration:none}
-.nav-mark img{width:70px;height:auto}
+.nav-mark{display:flex;align-items:center;gap:14px;text-decoration:none;min-width:0}
+.nav-mark img{width:70px;height:auto;flex:none}
 .nav-mark span{
   font-family:'Bebas Neue',Impact,sans-serif;
   font-size:2.1rem;letter-spacing:.06em;color:var(--gold);
   -webkit-text-stroke:1.5px var(--ink);
 }
-.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links{display:flex;gap:26px;align-items:center;flex:none}
 .nav-links a{
   font-family:'Bebas Neue',Impact,sans-serif;
   font-size:1.02rem;letter-spacing:.1em;
@@ -87,12 +94,13 @@ a{color:inherit}
 }
 .hero h1{
   font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(3rem,7.6vw,6rem);
-  line-height:.92;letter-spacing:.01em;
+  font-size:clamp(2.6rem,7.6vw,6rem);
+  line-height:.95;letter-spacing:.01em;
   color:var(--gold);margin:0 0 26px;
   -webkit-text-stroke:1.5px var(--ink);
+  overflow-wrap:break-word;
 }
-.rule{height:3px;background:var(--ink);width:220px;margin:0 0 26px;opacity:.75}
+.rule{height:3px;background:var(--ink);width:220px;max-width:100%;margin:0 0 26px;opacity:.75}
 .hero p{font-size:1.22rem;max-width:26em;margin:0 0 34px}
 .cta{
   display:inline-block;
@@ -103,6 +111,7 @@ a{color:inherit}
   border:3px solid var(--ink);border-radius:6px;
   box-shadow:5px 5px 0 var(--ink);
   transition:transform .12s,box-shadow .12s;
+  max-width:100%;
 }
 .cta:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
 .cta:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink)}
@@ -129,9 +138,10 @@ a{color:inherit}
 }
 .how h2{
   font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(2.1rem,4.6vw,3.2rem);
+  font-size:clamp(1.9rem,4.6vw,3.2rem);
   letter-spacing:.03em;color:var(--gold);
   margin:0 0 52px;-webkit-text-stroke:1.5px var(--ink);
+  overflow-wrap:break-word;
 }
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
 .step{border-top:3px solid rgba(13,13,13,.55);padding-top:20px}
@@ -145,7 +155,7 @@ a{color:inherit}
 .cards{background:var(--red-deep);padding:92px 0}
 .cards h2{
   font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(2.1rem,4.6vw,3.2rem);
+  font-size:clamp(1.9rem,4.6vw,3.2rem);
   letter-spacing:.03em;color:var(--gold);
   margin:0 0 14px;-webkit-text-stroke:1.5px var(--ink);
 }
@@ -164,9 +174,10 @@ a{color:inherit}
 .lineage{padding:92px 0;text-align:center}
 .lineage h2{
   font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(2.1rem,4.6vw,3.2rem);
+  font-size:clamp(1.9rem,4.6vw,3.2rem);
   letter-spacing:.03em;color:var(--gold);
   margin:0 0 26px;-webkit-text-stroke:1.5px var(--ink);
+  overflow-wrap:break-word;
 }
 .lineage p{max-width:36em;margin:0 auto 22px;font-size:1.08rem}
 .lineage em{color:var(--gold);font-style:italic}
@@ -174,12 +185,13 @@ a{color:inherit}
   font-family:'Bebas Neue',Impact,sans-serif;
   letter-spacing:.16em;font-size:1rem;
   margin:34px 0 0;color:var(--gold);
+  overflow-wrap:break-word;
 }
 
 .signup{background:var(--ink);padding:92px 0;text-align:center}
 .signup h2{
   font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:clamp(2.1rem,4.6vw,3.2rem);
+  font-size:clamp(1.9rem,4.6vw,3.2rem);
   letter-spacing:.03em;color:var(--gold);margin:0 0 16px;
 }
 .signup p{color:var(--cream);max-width:28em;margin:0 auto 34px}
@@ -209,40 +221,66 @@ a{color:inherit}
   .nav-mark img{width:56px}
   .nav-mark span{font-size:1.7rem}
 }
+
+@media (max-width:600px){
+  :root{--gutter:22px}
+  body{font-size:17px}
+  .hero{padding:40px 0 60px}
+  .hero h1{margin-bottom:22px}
+  .hero p{font-size:1.1rem;margin-bottom:28px}
+  .cta{display:block;text-align:center;padding:16px 20px;box-shadow:4px 4px 0 var(--ink)}
+  .thesis{padding:64px 0}
+  .how,.cards,.lineage,.signup{padding:64px 0}
+  .how h2{margin-bottom:38px}
+  .lineage p{font-size:1.02rem}
+  .foot-in{flex-direction:column;text-align:center;gap:14px}
+}
+
+@media (max-width:380px){
+  :root{--gutter:18px}
+  .nav-mark span{font-size:1.45rem}
+  .nav-mark img{width:46px}
+  .nav-mark{gap:10px}
+  .nav-buy{padding:8px 13px;font-size:.94rem}
+}
 </style>
 </head>
 <body>
 
 <div class="bar">FREE SHIPPING ON ALL ORDERS</div>
 
-<header class="wrap">
-  <nav class="nav">
-    <a class="nav-mark" href="/">
-      <img src="gear.png" alt="">
-      <span>ENFIGHTEN</span>
-    </a>
-    <div class="nav-links">
-      <a href="#how">The Deck</a>
-      <a href="#lineage">Lineage</a>
-      <a href="#keep">Newsletter</a>
-      <a class="nav-buy" href="https://shop.enfightenment.com">Shop</a>
-    </div>
-  </nav>
+<header>
+  <div class="wrap">
+    <nav class="nav">
+      <a class="nav-mark" href="/">
+        <img src="gear.png" alt="">
+        <span>ENFIGHTEN</span>
+      </a>
+      <div class="nav-links">
+        <a href="#how">The Deck</a>
+        <a href="#lineage">Lineage</a>
+        <a href="#keep">Newsletter</a>
+        <a class="nav-buy" href="https://shop.enfighten.com">Shop</a>
+      </div>
+    </nav>
+  </div>
 </header>
 
 <main>
 
-  <section class="hero wrap">
-    <div class="hero-grid">
-      <div>
-        <h1>You don't read wisdom.<br>You fight for it.</h1>
-        <div class="rule"></div>
-        <p>52 cards. One teaching each. Pull one at random and carry it
-           for a week — on the mat, at work, wherever your fight is.</p>
-        <a class="cta" href="#keep">Get the first card</a>
-      </div>
-      <div class="hero-card">
-        <img src="card-front.png" alt="An Enfighten card, front">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h1>You don't read wisdom.<br>You fight for it.</h1>
+          <div class="rule"></div>
+          <p>52 cards. One teaching each. Pull one at random and carry it
+             for a week — on the mat, at work, wherever your fight is.</p>
+          <a class="cta" href="#keep">Get the first card</a>
+        </div>
+        <div class="hero-card">
+          <img src="card-front.png" alt="An Enfighten card, front">
+        </div>
       </div>
     </div>
   </section>
@@ -254,24 +292,26 @@ a{color:inherit}
     </div>
   </section>
 
-  <section class="how wrap" id="how">
-    <p class="eyebrow">How it works</p>
-    <h2>Pull one. Live it. Repeat.</h2>
-    <div class="steps">
-      <div class="step">
-        <h3>Draw blind</h3>
-        <p>Every card front is identical, so you can't pick a favorite.
-           Fan them face-up and you still don't know what you're taking.</p>
-      </div>
-      <div class="step">
-        <h3>Read the back</h3>
-        <p>Three words on the front of the teaching, then where it came
-           from and what it cost to learn it.</p>
-      </div>
-      <div class="step">
-        <h3>Live it a week</h3>
-        <p>Not a quote to admire. A thing to try, fail at, and try
-           again until it's in your body.</p>
+  <section class="how" id="how">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2>Pull one. Live it. Repeat.</h2>
+      <div class="steps">
+        <div class="step">
+          <h3>Draw blind</h3>
+          <p>Every card front is identical, so you can't pick a favorite.
+             Fan them face-up and you still don't know what you're taking.</p>
+        </div>
+        <div class="step">
+          <h3>Read the back</h3>
+          <p>Three words on the front of the teaching, then where it came
+             from and what it cost to learn it.</p>
+        </div>
+        <div class="step">
+          <h3>Live it a week</h3>
+          <p>Not a quote to admire. A thing to try, fail at, and try
+             again until it's in your body.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -294,32 +334,34 @@ a{color:inherit}
     </div>
   </section>
 
-  <section class="lineage wrap" id="lineage">
-    <h2>Where this comes from</h2>
-    <p>Karate and yoga, started the same year at twenty-five.
-       Thirty-seven years later both are still daily, and the other
-       arts came in alongside them.</p>
-    <p>Fourteen years of daily training under Sensei Nishiyama, up to
-       the end of his life. And under Aiko-san — his assistant, and a
-       master in her own right. Sensei Nishiyama taught the class.
-       Afterward Aiko-san taught hers, in the office.</p>
-    <p>She's the part nobody writes down. A ballet dancer who came to
-       America around the same time Sensei Nishiyama did, and who taught
-       him movement and breath. She'd tell us you have to take from
-       Sensei Nishiyama — he doesn't always explain everything, so you
-       watch, and you learn from the movement. She said those last years
-       were his best teaching. Less hard repetition. More internal, more
-       breath.</p>
-    <p>Twenty-seven years under Sensei Rokah, Sensei Nishiyama's top
-       student — before, during, and after. He filled the gaps and drove
-       the repetition the other two expected you to already have.</p>
-    <p>A decade of jiu-jitsu — Gracie Humaitá, then John Danaher, then
-       B-Team. Now at Black Widow MMA: jiu-jitsu, Muay Thai, wrestling,
-       and the karate I keep training on my own, all of it going into
-       the same thing.</p>
-    <p>These teachings were handed down, tested, and paid for. None of
-       them came out of a book.</p>
-    <p class="names">FUNAKOSHI · NISHIYAMA · AIKO-SAN · ROKAH · DANAHER</p>
+  <section class="lineage" id="lineage">
+    <div class="wrap">
+      <h2>Where this comes from</h2>
+      <p>Karate and yoga, started the same year at twenty-five.
+         Thirty-seven years later both are still daily, and the other
+         arts came in alongside them.</p>
+      <p>Fourteen years of daily training under Sensei Nishiyama, up to
+         the end of his life. And under Aiko-san — his assistant, and a
+         master in her own right. Sensei Nishiyama taught the class.
+         Afterward Aiko-san taught hers, in the office.</p>
+      <p>She's the part nobody writes down. A ballet dancer who came to
+         America around the same time Sensei Nishiyama did, and who taught
+         him movement and breath. She'd tell us you have to take from
+         Sensei Nishiyama — he doesn't always explain everything, so you
+         watch, and you learn from the movement. She said those last years
+         were his best teaching. Less hard repetition. More internal, more
+         breath.</p>
+      <p>Twenty-seven years under Sensei Rokah, Sensei Nishiyama's top
+         student — before, during, and after. He filled the gaps and drove
+         the repetition the other two expected you to already have.</p>
+      <p>A decade of jiu-jitsu — Gracie Humaitá, then John Danaher, then
+         B-Team. Now at Black Widow MMA: jiu-jitsu, Muay Thai, wrestling,
+         and the karate I keep training on my own, all of it going into
+         the same thing.</p>
+      <p>These teachings were handed down, tested, and paid for. None of
+         them came out of a book.</p>
+      <p class="names">FUNAKOSHI · NISHIYAMA · AIKO-SAN · ROKAH · DANAHER</p>
+    </div>
   </section>
 
   <section class="signup" id="keep">
@@ -342,7 +384,7 @@ a{color:inherit}
   <div class="wrap foot-in">
     <small>© 2026 Enfighten · Some Fight Left LLC · Austin, Texas</small>
     <div>
-      <a href="https://shop.enfightenment.com">Shop</a> ·
+      <a href="https://shop.enfighten.com">Shop</a> ·
       <a href="https://instagram.com/enfighten">Instagram</a> ·
       <a href="mailto:enfighten@gmail.com">Email</a>
     </div>
