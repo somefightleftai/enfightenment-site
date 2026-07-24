@@ -46,6 +46,11 @@ img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
+/* keeps the black outline OUTSIDE the gold instead of eating into it */
+h1, h2, .nav-mark span, .names{
+  paint-order:stroke fill;
+}
+
 .wrap{
   max-width:1120px;
   margin-left:auto;margin-right:auto;
@@ -140,7 +145,7 @@ a{color:inherit}
   font-family:'Bebas Neue',Impact,sans-serif;
   font-size:clamp(1.9rem,4.6vw,3.2rem);
   letter-spacing:.03em;color:var(--gold);
-  margin:0 0 52px;-webkit-text-stroke:1.5px var(--ink);
+  margin:0 0 52px;-webkit-text-stroke:1.2px var(--ink);
   overflow-wrap:break-word;
 }
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
@@ -157,7 +162,7 @@ a{color:inherit}
   font-family:'Bebas Neue',Impact,sans-serif;
   font-size:clamp(1.9rem,4.6vw,3.2rem);
   letter-spacing:.03em;color:var(--gold);
-  margin:0 0 14px;-webkit-text-stroke:1.5px var(--ink);
+  margin:0 0 14px;-webkit-text-stroke:1.2px var(--ink);
 }
 .cards .lede{max-width:34em;margin:0 0 48px;font-size:1.1rem}
 .card-row{display:grid;grid-template-columns:1fr 1fr;gap:40px}
@@ -176,7 +181,7 @@ a{color:inherit}
   font-family:'Bebas Neue',Impact,sans-serif;
   font-size:clamp(1.9rem,4.6vw,3.2rem);
   letter-spacing:.03em;color:var(--gold);
-  margin:0 0 26px;-webkit-text-stroke:1.5px var(--ink);
+  margin:0 0 26px;-webkit-text-stroke:1.2px var(--ink);
   overflow-wrap:break-word;
 }
 .lineage p{max-width:36em;margin:0 auto 22px;font-size:1.08rem}
@@ -234,6 +239,7 @@ a{color:inherit}
   .how h2{margin-bottom:38px}
   .lineage p{font-size:1.02rem}
   .foot-in{flex-direction:column;text-align:center;gap:14px}
+  .how h2,.cards h2,.lineage h2{-webkit-text-stroke-width:1px}
 }
 
 @media (max-width:380px){
