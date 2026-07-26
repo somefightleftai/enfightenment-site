@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ENFIGHTEN — 52 cards of fighting wisdom</title>
-<meta name="description" content="A deck of 52 fighting-wisdom cards drawn from thirty-seven years of training. Pull one. Live it for a week.">
+<title>ENFIGHTEN — 52 cards of wisdom learned through martial arts</title>
+<meta name="description" content="A deck of 52 cards drawn from thirty-seven years of training. Pull one. Live it for a week.">
 
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="192x192" href="/favF_192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/favF_180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_simple_32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon_simple_192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon_simple_180.png">
 
 <meta property="og:title" content="ENFIGHTEN">
 <meta property="og:description" content="You don't read wisdom. You fight for it. 52 cards, one a week.">
@@ -23,11 +23,11 @@
 
 <style>
 :root{
-  --red:#C0392B;
-  --gold:#F0C158;
+  --red:#BC413B;
+  --gold:#FFCC00;
   --ink:#0D0D0D;
   --cream:#F0EDE6;
-  --red-deep:#A32E22;
+  --red-deep:#8E2F2A;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -61,13 +61,11 @@ a{color:inherit}
   display:flex;align-items:center;justify-content:space-between;
   gap:24px;padding:22px 0;
 }
-.nav-mark{display:flex;align-items:center;gap:14px;text-decoration:none}
-.nav-mark img{width:70px;height:auto}
-.nav-mark span{
-  font-family:'Bebas Neue',Impact,sans-serif;
-  font-size:2.1rem;letter-spacing:.06em;color:var(--gold);
-  -webkit-text-stroke:1.5px var(--ink);
+.nav-mark{
+  display:block;text-decoration:none;line-height:0;
+  background:var(--ink);padding:14px 22px;border-radius:10px;
 }
+.nav-mark img{width:236px;height:auto}
 .nav-links{display:flex;gap:26px;align-items:center}
 .nav-links a{
   font-family:'Bebas Neue',Impact,sans-serif;
@@ -82,7 +80,7 @@ a{color:inherit}
   padding:9px 18px;border:2px solid var(--ink);
   border-radius:5px;border-bottom-width:2px!important;
 }
-.nav-buy:hover{background:#f6cf78}
+.nav-buy:hover{background:var(--cream)}
 
 .hero{padding:60px 0 92px}
 .hero-grid{
@@ -195,7 +193,7 @@ a{color:inherit}
 }
 
 .foot{background:var(--ink);color:var(--cream);padding:34px 0 46px;
-  border-top:1px solid rgba(240,193,88,.28)}
+  border-top:1px solid rgba(255,204,0,.28)}
 .foot-in{display:flex;justify-content:space-between;
   align-items:center;gap:20px;flex-wrap:wrap}
 .foot a{color:var(--gold);text-decoration:none}
@@ -210,8 +208,8 @@ a{color:inherit}
   .card-row{grid-template-columns:1fr;gap:34px}
   .nav-links a:not(.nav-buy){display:none}
   .hero{padding:52px 0 70px}
-  .nav-mark img{width:56px}
-  .nav-mark span{font-size:1.7rem}
+  .nav-mark{padding:10px 15px;border-radius:8px}
+  .nav-mark img{width:168px}
 }
 </style>
 </head>
@@ -222,8 +220,7 @@ a{color:inherit}
 <header class="wrap">
   <nav class="nav">
     <a class="nav-mark" href="/">
-      <img src="gear.png" alt="">
-      <span>ENFIGHTEN</span>
+      <img src="wordmark.png" alt="Enfighten">
     </a>
     <div class="nav-links">
       <a href="#how">The Deck</a>
