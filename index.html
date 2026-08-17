@@ -31,8 +31,9 @@
   .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,204,0,.25)}
   .btn-ghost{background:transparent;color:var(--gold);border:2px solid var(--gold)}
   .btn-ghost:hover{background:var(--gold);color:var(--black)}
-  header.hero{text-align:center;padding:80px 0 90px}
-  header.hero img.coin{width:min(300px,68vw);height:auto;filter:drop-shadow(0 10px 40px rgba(0,0,0,.6))}
+  header.hero{text-align:center;padding:70px 0 90px}
+  header.hero .coinwrap{width:min(320px,72vw);margin:0 auto;filter:drop-shadow(0 10px 40px rgba(0,0,0,.6))}
+  header.hero video.coin,header.hero img.coin{width:100%;height:auto;display:block;border-radius:50%}
   header.hero .pillars{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,7vw,58px);letter-spacing:1px;margin-top:28px;color:var(--gold);line-height:1}
   header.hero p.sub{font-size:clamp(17px,2.6vw,22px);color:var(--ink);margin-top:16px;font-weight:700}
   header.hero p.tag{color:var(--muted);margin-top:8px;font-size:15px}
@@ -65,7 +66,12 @@
 <a id="top"></a>
 <header class="hero">
   <div class="wrap">
-    <img class="coin" src="/site_coin_gold.png" alt="ENFIGHTEN">
+    <div class="coinwrap">
+      <video class="coin" autoplay loop muted playsinline poster="/site_coin_gold.png">
+        <source src="/ENFIGHTEN_FIGHT_SWEEP.mp4" type="video/mp4">
+        <img class="coin" src="/site_coin_gold.png" alt="ENFIGHTEN">
+      </video>
+    </div>
     <div class="pillars">Every day&rsquo;s a battle.<br>Fight the decay.</div>
     <p class="sub">You can&rsquo;t stop it. You can fight it.</p>
     <p class="tag">40 years on the mat. 62 and still training.</p>
