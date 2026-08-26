@@ -14,7 +14,7 @@
   ::selection{background:var(--gold);color:var(--black)}
   nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px 26px;background:linear-gradient(var(--black),rgba(13,13,13,0))}
   nav .logo{height:30px}
-  nav .links{display:flex;gap:24px;font-family:"Bebas Neue",sans-serif;font-size:19px;letter-spacing:.09em}
+  nav .links{display:flex;gap:22px;font-family:"Bebas Neue",sans-serif;font-size:19px;letter-spacing:.09em}
   nav .links a{color:var(--ink);text-decoration:none;transition:color .2s}
   nav .links a:hover{color:var(--gold)}
   nav .links a.shop{color:var(--gold)}
@@ -36,10 +36,13 @@
   .block p+p{margin-top:16px}
   .quote{font-style:italic;font-size:clamp(21px,3.4vw,30px);line-height:1.4;color:var(--ink);max-width:24ch;margin:0 auto}
   .quote .by{display:block;font-style:normal;font-family:"Bebas Neue",sans-serif;letter-spacing:.12em;font-size:15px;color:#8a8375;margin-top:16px}
-  .shop{background:var(--red);border:none}
-  .shop h2{color:var(--black)} .shop p{color:#2a0a08;margin-bottom:32px}
+  .shop{background:var(--red)} .shop h2{color:var(--black)} .shop p{color:#2a0a08;margin-bottom:32px}
   .shop .cta{background:var(--black);color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:23px;letter-spacing:.1em;text-decoration:none;padding:13px 40px;display:inline-block;transition:transform .15s}
   .shop .cta:hover{transform:translateY(-2px)}
+  /* email signup */
+  .join iframe{width:100%;max-width:460px;border:none;background:transparent;margin:0 auto;display:block}
+  .join .fallback{margin-top:10px;font-size:14px;color:#8a8375}
+  .join .fallback a{color:var(--gold)}
   .handles{display:flex;gap:28px;justify-content:center;margin-top:22px;font-family:"Bebas Neue",sans-serif;font-size:23px;letter-spacing:.08em}
   .handles a{color:var(--ink);text-decoration:none;transition:color .2s}
   .handles a:hover{color:var(--gold)}
@@ -53,6 +56,7 @@
   <div class="links">
     <a class="shop" href="https://shop.enfighten.com">Shop</a>
     <a href="#practice">Practice</a>
+    <a href="#join">Join</a>
     <a href="#follow">Follow</a>
   </div>
 </nav>
@@ -81,6 +85,14 @@
   <h2>The Core Tee</h2>
   <p>The mark on the chest. The whole thing on the back. Printed deep on black.</p>
   <a class="cta" href="https://shop.enfighten.com">Shop the Line</a>
+</section>
+
+<section class="block join" id="join">
+  <div class="eyebrow">Join the fight</div>
+  <h2>Get the <span class="r">wisdom</span></h2>
+  <p style="margin-bottom:26px">Training, philosophy, and the occasional drop. No noise.</p>
+  <iframe src="https://embeds.beehiiv.com/f883cfed-92c8-4cfd-85f0-13badbfa1c27?slim=true" data-test-id="beehiiv-embed" height="52" frameborder="0" scrolling="no"></iframe>
+  <div class="fallback">Or subscribe at <a href="https://embeds.beehiiv.com/f883cfed-92c8-4cfd-85f0-13badbfa1c27">our newsletter page</a>.</div>
 </section>
 
 <section class="block" id="follow">
