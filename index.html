@@ -296,6 +296,15 @@
     });
   })();
 </script>
+<script>
+  document.querySelectorAll('a[href="#top"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({top:0,behavior:rm?'auto':'smooth'});
+    });
+  });
+</script>
 
 </body>
 </html>
