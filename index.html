@@ -129,7 +129,9 @@
   @media(max-width:760px){.pgrid{grid-template-columns:1fr;gap:18px}}
   .product{display:block;text-align:left;border:1px solid var(--hair);border-radius:14px;overflow:hidden;background:#131211;transition:border-color .25s,transform .25s}
   .product:hover{border-color:var(--hair-strong);transform:translateY(-4px)}
-  .pimg{aspect-ratio:1;background:#121110;overflow:hidden}
+  .pimg{aspect-ratio:1;background:#121110;overflow:hidden;position:relative}
+  .pimg .pback{position:absolute;inset:0;opacity:0;transition:opacity .3s ease}
+  .product:hover .pimg .pback{opacity:1}
   .pimg img{width:100%;height:100%;object-fit:cover;display:block}
   .prow{display:flex;align-items:center;justify-content:space-between;padding:16px 18px}
   .pname{font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:.02em;color:var(--bone)}
@@ -171,7 +173,7 @@
         <div class="prow"><span class="pname">ENFIGHTEN Tee</span><span class="pprice">$36</span></div>
       </a>
       <a class="product" href="https://shop.enfighten.com/products/fangs-tee" target="_blank" rel="noopener">
-        <div class="pimg"><img src="https://shop.enfighten.com/cdn/shop/files/unisex-staple-t-shirt-black-front-6ab1ed4e32602.jpg?v=1790045527&width=600" alt="FANGS Tee" loading="lazy" onerror="swapFallback(this)"></div>
+        <div class="pimg"><img class="pfront" src="https://shop.enfighten.com/cdn/shop/files/unisex-staple-t-shirt-black-front-6ab1ed4e32602.jpg?v=1790045527&width=600" alt="FANGS Tee front" loading="lazy" onerror="swapFallback(this)"><img class="pback" src="https://shop.enfighten.com/cdn/shop/files/unisex-staple-t-shirt-black-back-6ab1ed4e343d0.jpg?v=1790045527&width=600" alt="FANGS Tee back" loading="lazy" onerror="swapFallback(this)"></div>
         <div class="prow"><span class="pname">FANGS Tee</span><span class="pprice">$36</span></div>
       </a>
       <a class="product" href="https://shop.enfighten.com/products/fangs-trucker-cap" target="_blank" rel="noopener">
