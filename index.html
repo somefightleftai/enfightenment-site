@@ -121,28 +121,15 @@
   .gear{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:44px;align-items:stretch}
   .card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);transition:transform .2s,border-color .2s,box-shadow .2s}
   .card:hover{transform:translateY(-4px);border-color:rgba(252,222,2,.55);box-shadow:0 18px 50px rgba(0,0,0,.5)}
-  .slides{position:relative;aspect-ratio:1/1;background:#fff;overflow:hidden}
-  .slides .track{display:flex;height:100%;transition:transform .7s cubic-bezier(.6,0,.2,1)}
-  .slides .track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover}
-  .slides .badge,.slides .count{position:absolute;top:14px;z-index:3;font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;padding:5px 10px;border-radius:3px}
-  .slides .badge{left:14px;background:#111;color:var(--gold)}
-  .slides .count{right:14px;background:rgba(17,17,17,.75);color:#fff}
-  .slides .arr{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:40px;border-radius:50%;border:0;background:rgba(17,17,17,.72);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;opacity:.85;transition:opacity .2s,background .2s}
-  .slides .arr:hover{background:#111;opacity:1}
-  .slides .prev{left:12px} .slides .next{right:12px}
-  .slides .arr{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:40px;border-radius:50%;border:0;background:rgba(17,17,17,.72);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;opacity:0;transition:opacity .25s,background .2s}
-  .slides .arr:hover{background:#111}
-  .slides:hover .arr{opacity:.9}
-  .slides .prev{left:12px} .slides .next{right:12px}
-  @media(hover:none){.slides .arr{opacity:.8;width:36px;height:36px}}
-  .slides .dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:7px;z-index:3}
-  .slides .dots i{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.25);transition:background .3s,width .3s}
-  .slides .dots i.on{background:#111;width:24px;border-radius:5px}
-  .thumbs{display:flex;gap:10px;padding:14px 16px 0}
-  .thumbs button{flex:1;max-width:96px;background:#fff;border:2px solid transparent;border-radius:8px;padding:0;cursor:pointer;overflow:hidden;position:relative;opacity:.6;transition:opacity .2s,border-color .2s}
-  .thumbs button img{width:100%;aspect-ratio:1/1;object-fit:cover}
-  .thumbs button span{position:absolute;left:0;right:0;bottom:0;font-family:'Oswald';text-transform:uppercase;font-size:.6rem;letter-spacing:.1em;background:rgba(17,17,17,.75);color:#fff;padding:2px 0}
-  .thumbs button.on,.thumbs button:hover{opacity:1;border-color:var(--gold)}
+  .pimg{position:relative;display:block;aspect-ratio:1/1;background:#fff;overflow:hidden}
+  .pimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,transform .6s ease}
+  .pimg .alt{opacity:0}
+  .card:hover .pimg.has-alt .front{opacity:0}
+  .card:hover .pimg.has-alt .alt{opacity:1}
+  .card:hover .pimg img{transform:scale(1.03)}
+  .pimg .badge{position:absolute;top:14px;left:14px;z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;padding:5px 10px;border-radius:3px;background:#111;color:var(--gold)}
+  .pimg .hint{position:absolute;right:14px;bottom:14px;z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.66rem;padding:5px 10px;border-radius:3px;background:rgba(17,17,17,.78);color:#fff;opacity:0;transition:opacity .3s}
+  .card:hover .pimg .hint{opacity:1}
   .card .body{padding:24px 26px 28px;display:flex;flex-direction:column;flex:1}
   .card .kick{font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-size:.74rem;margin-bottom:8px}
   .card h3{font-size:1.35rem;line-height:1.15}
@@ -320,15 +307,15 @@
       </div>
       <div class="gear">
         <div class="card reveal">
-          <div class="slides"><span class="badge">New</span><a class="track" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-black" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-front-6ac70697a5eef.jpg?v=1791428255&width=900" alt="ENFIGHTEN Tee - Fight Black, Front"><img src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-left-6ac70697a6c04.jpg?v=1791428255&width=900" alt="ENFIGHTEN Tee - Fight Black, Side"><img src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-left-front-6ac70697a7465.jpg?v=1791428255&width=900" alt="ENFIGHTEN Tee - Fight Black, Angle"></a><button type="button" class="arr prev" aria-label="Previous photo">&#8249;</button><button type="button" class="arr next" aria-label="Next photo">&#8250;</button><div class="dots"></div></div>
+          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-black" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-front-6ac70697a5eef.jpg?v=1791428255&width=900" alt="ENFIGHTEN Tee - Fight Black, Front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-left-6ac70697a6c04.jpg?v=1791428255&width=900" alt="ENFIGHTEN Tee - Fight Black, Side" loading="lazy"><span class="hint">Side view</span></a>
           <div class="body"><div class="kick">Enlighten through the fight</div><h3>ENFIGHTEN Tee &mdash; Fight Black</h3><div class="price">$36 <small>Free US shipping</small></div><p>The rising sun and the E crest on black. Every fight is a lesson. Learn. Grow. Become.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-black" target="_blank" rel="noopener">Shop the Black Tee &rarr;</a></div>
         </div>
         <div class="card reveal">
-          <div class="slides"><span class="badge">New</span><a class="track" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-red" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-front-6ac7062901e4f.jpg?v=1791428146&width=900" alt="ENFIGHTEN Tee - Fight Red, Front"><img src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-back-6ac70629038ca.jpg?v=1791428146&width=900" alt="ENFIGHTEN Tee - Fight Red, Back"></a><button type="button" class="arr prev" aria-label="Previous photo">&#8249;</button><button type="button" class="arr next" aria-label="Next photo">&#8250;</button><div class="dots"></div></div>
+          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-red" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-front-6ac7062901e4f.jpg?v=1791428146&width=900" alt="ENFIGHTEN Tee - Fight Red, Front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-back-6ac70629038ca.jpg?v=1791428146&width=900" alt="ENFIGHTEN Tee - Fight Red, Back" loading="lazy"><span class="hint">Back view</span></a>
           <div class="body"><div class="kick">Every fight is a lesson</div><h3>ENFIGHTEN Tee &mdash; Fight Red</h3><div class="price">$36 <small>Free US shipping</small></div><p>Sun-ray crest on the chest, the full ENFIGHTEN mark on the back. Built on 40+ years on the mat.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-red" target="_blank" rel="noopener">Shop the Red Tee &rarr;</a></div>
         </div>
         <div class="card reveal">
-          <div class="slides"><span class="badge">New</span><a class="track" href="https://shop.enfighten.com/products/enfighten-rise-trucker-cap" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/snapback-trucker-cap-black-front-6ac6f4e45fc3b.jpg?v=1791423728&width=900" alt="ENFIGHTEN Trucker Cap, Front"></a></div>
+          <a class="pimg" href="https://shop.enfighten.com/products/enfighten-rise-trucker-cap" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/snapback-trucker-cap-black-front-6ac6f4e45fc3b.jpg?v=1791423728&width=900" alt="ENFIGHTEN Trucker Cap, Front"></a>
           
           <div class="body"><div class="kick">Where the light comes up</div><h3>ENFIGHTEN Trucker Cap</h3><div class="price">$36 <small>Free US shipping</small></div><p>Embroidered rising sun and ENFIGHTEN in white and gold on a structured black trucker. Carry the fight.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-trucker-cap" target="_blank" rel="noopener">Shop the Cap &rarr;</a></div>
         </div>
@@ -344,10 +331,11 @@
         <h2 class="sec">Train <span class="gold">with me.</span></h2>
         <p class="sub">The training, the thinking, the fight as it actually looks. New posts every week on Instagram and YouTube.</p>
         <div class="links">
+          <a href="mailto:hello@enfighten.com?subject=Reaching%20out" class="btn btn-gold">Reach Out</a>
           <a href="https://instagram.com/enfighten" target="_blank" rel="noopener" class="btn btn-red">Instagram</a>
           <a href="https://youtube.com/@enfighten" target="_blank" rel="noopener" class="btn btn-red">YouTube</a>
         </div>
-        <p class="mail">Questions or want to work together? <a href="mailto:hello@enfighten.com">hello@enfighten.com</a></p>
+        <p class="mail">Or email me directly: <a href="mailto:hello@enfighten.com">hello@enfighten.com</a></p>
       </div>
       <div class="signup reveal">
         <div class="o">Get the lessons by email</div>
@@ -381,27 +369,6 @@
   // close mobile menu on tap
   document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('menu').classList.remove('open');});});
 
-  // product photos: hover to flip through (desktop), arrows or swipe (any device). No auto-scroll.
-  var canHover=window.matchMedia('(hover:hover)').matches;
-  document.querySelectorAll('.card').forEach(function(card){
-    var box=card.querySelector('.slides'), track=box.querySelector('.track'), imgs=track.querySelectorAll('img');
-    var n=imgs.length, i=0, timer=null;
-    if(n<2){box.querySelectorAll('.arr').forEach(function(b){b.remove();});return;}
-    var dots=box.querySelector('.dots');
-    for(var k=0;k<n;k++){dots.appendChild(document.createElement('i'));}
-    function go(j){i=(j+n)%n;track.style.transform='translateX('+(-100*i)+'%)';dots.querySelectorAll('i').forEach(function(d,k){d.classList.toggle('on',k===i);});}
-    go(0);
-    if(canHover){
-      box.addEventListener('mouseenter',function(){go(i+1);timer=setInterval(function(){go(i+1);},1400);});
-      box.addEventListener('mouseleave',function(){clearInterval(timer);timer=null;go(0);});
-    }
-    function step(d){return function(e){e.preventDefault();e.stopPropagation();if(timer){clearInterval(timer);timer=null;}go(i+d);};}
-    box.querySelector('.prev').addEventListener('click',step(-1));
-    box.querySelector('.next').addEventListener('click',step(1));
-    var x0=null;
-    box.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
-    box.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>35){e.preventDefault();go(i+(dx<0?1:-1));}x0=null;});
-  });
 })();
 </script>
 </body>
