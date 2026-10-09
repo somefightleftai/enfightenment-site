@@ -128,12 +128,15 @@
   .pimg{position:relative;display:block;aspect-ratio:1/1;background:#fff;overflow:hidden}
   .pimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s ease,transform .6s ease}
   .pimg .alt{opacity:0}
-  .card:hover .pimg.has-alt .front{opacity:0}
+  .card:hover .pimg.has-alt .front,.pimg.has-alt.flip .front{opacity:0}
+  .pimg.has-alt.flip .alt{opacity:1}
+  .pimg.has-alt.flip .hint{opacity:1}
   .card:hover .pimg.has-alt .alt{opacity:1}
   .card:hover .pimg img{transform:scale(1.03)}
   .pimg .badge{position:absolute;top:14px;left:14px;z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;padding:5px 10px;border-radius:3px;background:#111;color:var(--gold)}
   .pimg .hint{position:absolute;right:14px;bottom:14px;z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.66rem;padding:5px 10px;border-radius:3px;background:rgba(17,17,17,.78);color:#fff;opacity:0;transition:opacity .3s}
   .card:hover .pimg .hint{opacity:1}
+  @media(hover:none){.pimg.has-alt .hint{opacity:1}.pimg.has-alt .hint::before{content:"Tap: "}}
   .card .body{padding:24px 26px 28px;display:flex;flex-direction:column;flex:1}
   .card .kick{font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-size:.74rem;margin-bottom:8px}
   .card h3{font-size:1.35rem;line-height:1.15}
@@ -305,23 +308,22 @@
         <div>
           <div class="eyebrow reveal">04 &mdash; The Gear</div>
           <h2 class="sec reveal" style="margin-bottom:12px">Wear <span class="gold">the fight.</span></h2>
-          <p class="sub reveal">The rising sun: the lesson landing, the fight moving forward. Built on 40+ years on the mat, made for anyone still in theirs.</p>
+          <p class="sub reveal">The Rise collection. Rise through the fight. Built on 40+ years on the mat, made for anyone still in theirs.</p>
         </div>
         <div class="ship reveal">Free US Shipping</div>
       </div>
       <div class="gear">
         <div class="card reveal">
-          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-black" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-front-6ac70697a5eef.jpg?v=1791428255&width=900" alt="ENFIGHTEN Tee - Fight Black, Front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-left-6ac70697a6c04.jpg?v=1791428255&width=900" alt="ENFIGHTEN Tee - Fight Black, Side" loading="lazy"><span class="hint">Side view</span></a>
-          <div class="body"><div class="kick">Rise through the fight</div><h3>ENFIGHTEN Tee &mdash; Fight Black</h3><div class="price">$36 <small>Free US shipping</small></div><p>The rising sun and the E crest on black. Every fight is a lesson. Learn. Grow. Become.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-black" target="_blank" rel="noopener">Shop the Black Tee &rarr;</a></div>
+          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-black" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-front-6ac84e478788c.jpg?v=1791512148&width=900" alt="ENFIGHTEN Rise Tee - Black, front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-back-6ac84e4788a72.jpg?v=1791512148&width=900" alt="ENFIGHTEN Rise Tee - Black, back" loading="lazy"><span class="hint">Back view</span></a>
+          <div class="body"><div class="kick">Rise through the fight</div><h3>ENFIGHTEN Rise Tee &mdash; Black</h3><div class="price">$36 <small>Free US shipping</small></div><p>E crest on the chest. The full ENFIGHTEN crest across the back. White and gold on black.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-tee-black" target="_blank" rel="noopener">Shop the Black Tee &rarr;</a></div>
         </div>
         <div class="card reveal">
-          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-red" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-front-6ac7062901e4f.jpg?v=1791428146&width=900" alt="ENFIGHTEN Tee - Fight Red, Front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-back-6ac70629038ca.jpg?v=1791428146&width=900" alt="ENFIGHTEN Tee - Fight Red, Back" loading="lazy"><span class="hint">Back view</span></a>
-          <div class="body"><div class="kick">Every fight is a lesson</div><h3>ENFIGHTEN Tee &mdash; Fight Red</h3><div class="price">$36 <small>Free US shipping</small></div><p>Sun-ray crest on the chest, the full ENFIGHTEN mark on the back. Built on 40+ years on the mat.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-red" target="_blank" rel="noopener">Shop the Red Tee &rarr;</a></div>
+          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-red" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-front-6ac84d9a07c52.jpg?v=1791511977&width=900" alt="ENFIGHTEN Rise Tee - Red, front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-back-6ac84d9a09ea1.jpg?v=1791511977&width=900" alt="ENFIGHTEN Rise Tee - Red, back" loading="lazy"><span class="hint">Back view</span></a>
+          <div class="body"><div class="kick">Every fight is a lesson</div><h3>ENFIGHTEN Rise Tee &mdash; Red</h3><div class="price">$36 <small>Free US shipping</small></div><p>E crest on the chest. The full crest on the back, white and gold with a sharp black outline on red.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-tee-red" target="_blank" rel="noopener">Shop the Red Tee &rarr;</a></div>
         </div>
         <div class="card reveal">
-          <a class="pimg" href="https://shop.enfighten.com/products/enfighten-rise-trucker-cap" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/snapback-trucker-cap-black-front-6ac6f4e45fc3b.jpg?v=1791423728&width=900" alt="ENFIGHTEN Trucker Cap, Front"></a>
-          
-          <div class="body"><div class="kick">Where the light comes up</div><h3>ENFIGHTEN Trucker Cap</h3><div class="price">$36 <small>Free US shipping</small></div><p>Embroidered rising sun and ENFIGHTEN in white and gold on a structured black trucker. Carry the fight.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-trucker-cap" target="_blank" rel="noopener">Shop the Cap &rarr;</a></div>
+          <a class="pimg" href="https://shop.enfighten.com/products/enfighten-rise-crest-tee-black" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-front-6ac84ed2d27fa.jpg?v=1791512283&width=900" alt="ENFIGHTEN Rise Crest Tee - Black, front"></a>
+          <div class="body"><div class="kick">Wear it up front</div><h3>ENFIGHTEN Rise Crest Tee &mdash; Black</h3><div class="price">$36 <small>Free US shipping</small></div><p>The full ENFIGHTEN crest, big and front and center. One bold mark. Learn. Grow. Become.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-crest-tee-black" target="_blank" rel="noopener">Shop the Crest Tee &rarr;</a></div>
         </div>
       </div>
       <div class="shop-all reveal"><a href="https://shop.enfighten.com" target="_blank" rel="noopener" class="btn btn-ghost">Shop All Gear &rarr;</a></div>
@@ -359,7 +361,7 @@
       <p>Rise through the fight.<br>Learn. Grow. Become.</p>
     </div>
     <div class="fcol"><div class="o">Explore</div><a href="#idea">The Idea</a><a href="#who">My Story</a><a href="#work">The Work</a><a href="#work-with-me">Work With Me</a></div>
-    <div class="fcol"><div class="o">Shop</div><a href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-black" target="_blank" rel="noopener">Tee &mdash; Fight Black</a><a href="https://shop.enfighten.com/products/enfighten-rise-tee-in-fight-red" target="_blank" rel="noopener">Tee &mdash; Fight Red</a><a href="https://shop.enfighten.com/products/enfighten-rise-trucker-cap" target="_blank" rel="noopener">Trucker Cap</a><a href="https://shop.enfighten.com" target="_blank" rel="noopener">All Gear</a></div>
+    <div class="fcol"><div class="o">Shop</div><a href="https://shop.enfighten.com/products/enfighten-rise-tee-black" target="_blank" rel="noopener">Rise Tee &mdash; Black</a><a href="https://shop.enfighten.com/products/enfighten-rise-tee-red" target="_blank" rel="noopener">Rise Tee &mdash; Red</a><a href="https://shop.enfighten.com/products/enfighten-rise-crest-tee-black" target="_blank" rel="noopener">Rise Crest Tee &mdash; Black</a><a href="https://shop.enfighten.com" target="_blank" rel="noopener">All Gear</a></div>
     <div class="fcol"><div class="o">Connect</div><a href="https://instagram.com/enfighten" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@enfighten" target="_blank" rel="noopener">YouTube</a><a href="mailto:hello@enfighten.com">hello@enfighten.com</a></div>
   </div>
   <div class="wrap legal">&copy; 2026 Some Fight Left LLC &middot; Austin, TX</div>
@@ -373,6 +375,8 @@
   // close mobile menu on tap
   document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('menu').classList.remove('open');});});
 
+  // touch-flip: on phones, first tap on a front/back photo shows the back, second tap opens the product
+  if(!window.matchMedia('(hover:hover)').matches){document.querySelectorAll('.pimg.has-alt').forEach(function(a){a.addEventListener('click',function(e){if(!a.classList.contains('flip')){e.preventDefault();a.classList.add('flip');a.querySelector('.hint').textContent='Tap again to shop';}});});}
 })();
 </script>
 </body>
