@@ -135,6 +135,13 @@
   .card:hover .pimg .hint{opacity:1}
   .pimg.has-alt.flip .front{opacity:0}
   .pimg.has-alt.flip .alt{opacity:1}
+  .pimg .strip{position:absolute;inset:0;display:block}
+  @media(hover:none){
+    .pimg.has-alt .strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .pimg.has-alt .strip::-webkit-scrollbar{display:none}
+    .pimg.has-alt .strip img{position:relative;inset:auto;flex:0 0 100%;opacity:1!important;scroll-snap-align:center;transition:none}
+    .pimg.has-alt .hint{opacity:1}
+  }
   .fb{display:flex;gap:8px;justify-content:center;padding:14px 16px 0}
   .fb button{font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;padding:8px 18px;border-radius:3px;border:1px solid var(--line2);background:transparent;color:var(--muted);cursor:pointer}
   .fb button.on{background:var(--gold);border-color:var(--gold);color:#111}
@@ -315,11 +322,11 @@
       </div>
       <div class="gear">
         <div class="card reveal">
-          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-black" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-front-6ac84e478788c.jpg?v=1791512148&width=900" alt="ENFIGHTEN Rise Tee - Black, front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-back-6ac84e4788a72.jpg?v=1791512148&width=900" alt="ENFIGHTEN Rise Tee - Black, back"><span class="hint">Back view</span></a><div class="fb" role="group" aria-label="Choose view"><button type="button" class="on" data-v="front">Front</button><button type="button" data-v="back">Back</button></div>
+          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-black" target="_blank" rel="noopener"><span class="badge">New</span><span class="strip"><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-front-6ac84e478788c.jpg?v=1791512148&width=900" alt="ENFIGHTEN Rise Tee - Black, front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-black-back-6ac84e4788a72.jpg?v=1791512148&width=900" alt="ENFIGHTEN Rise Tee - Black, back"></span><span class="hint">Back view</span></a><div class="fb" role="group" aria-label="Choose view"><button type="button" class="on" data-v="front">Front</button><button type="button" data-v="back">Back</button></div>
           <div class="body"><div class="kick">Rise through the fight</div><h3>ENFIGHTEN Rise Tee &mdash; Black</h3><div class="price">$36 <small>Free US shipping</small></div><p>E crest on the chest. The full ENFIGHTEN crest across the back. White and gold on black.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-tee-black" target="_blank" rel="noopener">Shop the Black Tee &rarr;</a></div>
         </div>
         <div class="card reveal">
-          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-red" target="_blank" rel="noopener"><span class="badge">New</span><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-front-6ac84d9a07c52.jpg?v=1791511977&width=900" alt="ENFIGHTEN Rise Tee - Red, front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-back-6ac84d9a09ea1.jpg?v=1791511977&width=900" alt="ENFIGHTEN Rise Tee - Red, back"><span class="hint">Back view</span></a><div class="fb" role="group" aria-label="Choose view"><button type="button" class="on" data-v="front">Front</button><button type="button" data-v="back">Back</button></div>
+          <a class="pimg has-alt" href="https://shop.enfighten.com/products/enfighten-rise-tee-red" target="_blank" rel="noopener"><span class="badge">New</span><span class="strip"><img class="front" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-front-6ac84d9a07c52.jpg?v=1791511977&width=900" alt="ENFIGHTEN Rise Tee - Red, front"><img class="alt" src="https://cdn.shopify.com/s/files/1/1018/9999/3410/files/unisex-staple-t-shirt-red-back-6ac84d9a09ea1.jpg?v=1791511977&width=900" alt="ENFIGHTEN Rise Tee - Red, back"></span><span class="hint">Back view</span></a><div class="fb" role="group" aria-label="Choose view"><button type="button" class="on" data-v="front">Front</button><button type="button" data-v="back">Back</button></div>
           <div class="body"><div class="kick">Every fight is a lesson</div><h3>ENFIGHTEN Rise Tee &mdash; Red</h3><div class="price">$36 <small>Free US shipping</small></div><p>E crest on the chest. The full crest on the back, white and gold with a sharp black outline on red.</p><a class="btn btn-gold" href="https://shop.enfighten.com/products/enfighten-rise-tee-red" target="_blank" rel="noopener">Shop the Red Tee &rarr;</a></div>
         </div>
         <div class="card reveal">
@@ -376,8 +383,19 @@
   // close mobile menu on tap
   document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('menu').classList.remove('open');});});
 
-  // front/back buttons (all devices); desktop hover also previews the back
-  document.querySelectorAll('.fb').forEach(function(g){var p=g.previousElementSibling;g.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){var back=b.dataset.v==='back';p.classList.toggle('flip',back);p.classList.toggle('front-lock',!back);g.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b);});});});});
+  // front/back: buttons on all devices; on phones the photo also swipes left/right
+  var touch=!matchMedia('(hover:hover)').matches;
+  document.querySelectorAll('.fb').forEach(function(g){
+    var p=g.previousElementSibling, strip=p&&p.querySelector('.strip'), btns=g.querySelectorAll('button');
+    if(!strip||btns.length<2) return;
+    function mark(back){btns.forEach(function(x){x.classList.toggle('on',(x.dataset.v==='back')===back);});var h=p.querySelector('.hint');if(h)h.textContent=back?'Swipe for front':'Swipe for back';}
+    if(touch){var h=p.querySelector('.hint');if(h)h.textContent='Swipe for back';}
+    btns.forEach(function(b){b.addEventListener('click',function(){var back=b.dataset.v==='back';
+      if(touch){strip.scrollTo({left:back?strip.clientWidth:0,behavior:'smooth'});}
+      else{p.classList.toggle('flip',back);p.classList.toggle('front-lock',!back);}
+      mark(back);});});
+    if(touch){strip.addEventListener('scroll',function(){mark(strip.scrollLeft>strip.clientWidth/2);},{passive:true});}
+  });
 })();
 </script>
 </body>
