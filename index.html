@@ -74,6 +74,12 @@ h2.big{font-size:clamp(2.6rem,7vw,5rem);line-height:.98}
 .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 34px;margin-top:44px;font-family:'Oswald';text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;color:var(--muted)}
 .trust span::before{content:"\2713";color:var(--gold);margin-right:9px}
 .legal a{color:#8a877f}.legal a:hover{color:var(--gold)}
+.flip{position:absolute;right:12px;bottom:12px;z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:600;background:rgba(10,10,10,.85);color:var(--gold);border:1px solid rgba(252,202,1,.5);border-radius:20px;padding:7px 13px;cursor:pointer}
+.flip .f{display:none}
+.card:hover .flip .b,.card.flipped .flip .b{display:none}
+.card:hover .flip .f,.card.flipped .flip .f{display:inline}
+.card.flipped .pimg .alt{opacity:1}
+@media(hover:none){.card:hover .pimg .alt{opacity:0}.card:hover .flip .b{display:inline}.card:hover .flip .f{display:none}.card.flipped .pimg .alt{opacity:1}.card.flipped .flip .b{display:none}.card.flipped .flip .f{display:inline}}
 footer{border-top:1px solid var(--line);padding:46px 0}
 .foot{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
 .foot img{height:52px;width:auto;display:block}
@@ -117,7 +123,7 @@ footer{border-top:1px solid var(--line);padding:46px 0}
     </div>
     <div class="wrap gear">
       <div class="card">
-        <a class="pimg" href="https://shop.enfighten.com/products/do-good-fight-hard-mountain-tee" target="_blank" rel="noopener"><img src="https://shop.enfighten.com/cdn/shop/files/unisex-staple-t-shirt-black-back-6ad015cc5642e.jpg?v=1792021974&width=900" alt="Do Good. Fight Hard. Mountain Tee, black, back print"><img class="alt" src="https://shop.enfighten.com/cdn/shop/files/unisex-staple-t-shirt-black-front-6ad015cc555eb.jpg?v=1792021974&width=900" alt="" loading="lazy"></a>
+        <a class="pimg" href="https://shop.enfighten.com/products/do-good-fight-hard-mountain-tee" target="_blank" rel="noopener"><img src="https://shop.enfighten.com/cdn/shop/files/unisex-staple-t-shirt-black-back-6ad015cc5642e.jpg?v=1792021974&width=900" alt="Do Good. Fight Hard. Mountain Tee, black, back print"><img class="alt" src="https://shop.enfighten.com/cdn/shop/files/unisex-staple-t-shirt-black-front-6ad015cc555eb.jpg?v=1792021974&width=900" alt="" loading="lazy"><button class="flip" type="button" aria-label="Flip to see the other side"><span class="b">Back</span><span class="f">Front</span> &#8635;</button></a>
         <div class="body"><h3>Do Good. Fight Hard. Mountain Tee</h3><div class="price">$45 <small>Black</small></div><a class="btn btn-gold" href="https://shop.enfighten.com/products/do-good-fight-hard-mountain-tee" target="_blank" rel="noopener">Shop the Tee &rarr;</a></div>
       </div>
       <div class="card">
@@ -146,5 +152,8 @@ footer{border-top:1px solid var(--line);padding:46px 0}
   </div>
   <div class="legal"><a href="mailto:hello@enfighten.com">hello@enfighten.com</a> &middot; &copy; 2026 Some Fight Left LLC &middot; Austin, TX</div>
 </div></footer>
+<script>
+document.querySelectorAll('.flip').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();b.closest('.card').classList.toggle('flipped');});});
+</script>
 </body>
 </html>
